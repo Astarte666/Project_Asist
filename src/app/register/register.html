@@ -1,0 +1,89 @@
+@switch (step) {
+@case (1) {
+// Step 1: Seleccion de "Rol"
+
+<div class="register-container">
+    <div class="register-box text-center">
+        <form>
+            <div>
+                <select name="RolSelect" id="RolSelect" class="form-select mb-3">Selecciona Rol</select>
+                <option value="Student">Estudiante</option>
+                <option value="Teacher">Profesor/a</option>
+                <option value="Preceptor">Preceptor</option>
+            </div>
+            <div>
+                <button type="button" class="btn btn-danger">Cancelar</button>
+            </div>
+            <div>
+                <Button type="button" class="btn btn-primary">Siguiente</Button>
+            </div>
+        </form>
+    </div>
+</div>
+
+}
+
+@case (2) {
+// Step 2: Registro de toda la vida
+
+<div class="register-container">
+    <div class="register-box text-center">
+        <form>
+            <div clas>
+                <input type="text" id="name" placeholder="Nombre Y Apellido" class="form-control mb-3" required />
+            </div>
+            <div>
+                <input type="text" placeholder="DNI" placeholder="Ingrese su DNI" class="form-control mb-3" requiered />
+            </div>
+            <div>
+                <input type="email" placeholder="Ingrese Correo Electronico" class="form-control mb-3" requuired>
+            </div>
+            <div>
+                <input type="text" placeholder="Ingrese número de Telefono" class="form-control mb-3" required>
+            </div>
+            <div>
+                <select name="localidad" id="localidad">Seleccione su Localidad</select>
+                <option value="llenar dinamicamente">Llenar dinamicamente</option>
+            </div>
+            <div>
+                <input type="text" placeholder="Ingrese su Domicilio" class="form-control mb-3" required>
+            </div>
+            <div>
+                <button type="button" class="btn btn-danger">Atras</button>
+            </div>
+            <div>
+                <Button type="button" class="btn btn-primary">Siguiente</Button>
+            </div>
+        </form>
+    </div>
+</div>
+
+}
+
+@case (3) {
+// Step 3: Registro de usuario y Contraseña
+
+<div class="register-container">
+    <div class="register-box text-center">
+        <form>
+            <div class="form-control">
+                <input type="text" placeholder="Ingrese un nombre de usuario" class="form-comtrol mb-3" required>
+                alert ("Deberá usar este usuario para iniciar sesion")
+            </div>
+            <div class="form-control">
+                <input type="text" placeholder="Ingrese su contraseña" class="form-control mb-3" required>
+
+            </div>
+            <div class="form-control">
+                <button type="button" class="btn btn-danger">Atras</button>
+            </div>
+            <div>
+                <Button type="button" class="btn btn-success">Crear</Button>
+            </div>
+        </form>
+    </div>
+</div>
+
+}
+
+}
