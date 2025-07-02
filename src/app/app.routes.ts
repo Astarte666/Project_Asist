@@ -4,7 +4,7 @@ import { Login } from './login/login';
 import { Dashboard } from './student/dashboard/dashboard';
 import { Teacher } from './teacher/teacher';
 import { Student } from './student/student';
-import { PanelInicial } from './panel-inicial/panel-inicial';
+import { PanelInicial } from './Dashboard/panel-inicial';
 import { Preceptor } from './preceptor/preceptor';
 import { Register } from './register/register';
 
@@ -19,7 +19,7 @@ export const routes: Routes = [
     {path: 'Student', component: Student},
     {path: 'PanelInicial', component: PanelInicial},
     {path: 'Preceptor', component: Preceptor},
-    {path: ''}
+    {path: 'Dashboard', component: Dashboard},
     
 
     //Inicio Predeterminado
