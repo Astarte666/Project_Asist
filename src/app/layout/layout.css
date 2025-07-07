@@ -1,71 +1,43 @@
-        body {
-            background-color: #111;
-            color: #ff914d;
-            font-family: 'Comic Neue', cursive;
-            background-size: 1366px 768px;
-            opacity: 0.9;
-        }
+:root {
+    --ash-gray: rgba(233, 233, 233, 0.829);
+    --air-force-blue: #598392ff;
+    --rich-black: #01161eff;
+    --beige: #eff6e0ff;
+    --midnight-green: #124559ff;
+}
 
+body {
+    min-height: 100vh;
+}
 
+.sidebar {
+    background-color: var(--midnight-green);
+    min-height: 100vh;
+    color: white;
+}
 
-        .login-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
+.main-content {
+    background-color: var(--ash-gray);
+    padding: 20px;
+}
 
-        .login-box {
-            background-color: #222;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-            max-width: 350px;
-            width: 100%;
-            color: white;
-            border: 1px solid #aaa;
-        }
+.block {
+    background-color: #ffffff;
+    height: 150px;
+    border-radius: 5px;
+}
 
-        .login-box input[type="text"],
-        .login-box input[type="password"] {
-            background-color: #e0e0e0;
-            border-radius: 10px;
-            border: none;
-        }
+.supnav {
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    height: 10%;
+    padding: 15px;
+}
 
-        .login-box .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
+.pointer {
+    cursor: pointer;
+}
 
-        .login-box .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        .login-box .register-btn {
-            background-color: transparent;
-            color: #00bfff;
-            border: 1px solid #00bfff;
-        }
-
-        .login-box .register-btn:hover {
-            background-color: #00bfff;
-            color: black;
-        }
-
-        .welcome-text {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .project-title {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #ff6f00;
-        }
-
-        .error-text {
-            color: #ff4d4d;
-            font-size: 0.9rem;
-        }
+.a {
+    color: black;
+}

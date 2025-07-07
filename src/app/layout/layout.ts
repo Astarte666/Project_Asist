@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './layout.css'
 })
 export class Layout {
-
+  
 }

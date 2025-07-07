@@ -1,21 +1,21 @@
 @switch (step) {
 @case (1) {
-// Step 1: Seleccion de "Rol"
+<!-- // Step 1: Seleccion de "Rol" -->
 
-<div class="register-container">
-    <div class="register-box text-center">
+<div class="login-container">
+    <div class="login-box text-center">
         <form>
-            <div>
-                <select name="RolSelect" id="RolSelect" class="form-select mb-3">Selecciona Rol</select>
-                <option value="Student">Estudiante</option>
-                <option value="Teacher">Profesor/a</option>
-                <option value="Preceptor">Preceptor</option>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Selecciona tu rol</option>
+                <option value="1">Profesor</option>
+                <option value="2">Estudiante</option>
+                <option value="3">Preceptor</option>
+            </select>
+            <div class="mb-3">
+                <button type="button" class="btn btn-danger" (click)="previousStep()">Cancelar</button>
             </div>
             <div>
-                <button type="button" class="btn btn-danger">Cancelar</button>
-            </div>
-            <div>
-                <Button type="button" class="btn btn-primary">Siguiente</Button>
+                <Button type="button" class="btn btn-primary" (click)="nextStep()">Siguiente</Button>
             </div>
         </form>
     </div>
@@ -24,10 +24,10 @@
 }
 
 @case (2) {
-// Step 2: Registro de toda la vida
+<!-- // Step 2: Registro de toda la vida -->
 
-<div class="register-container">
-    <div class="register-box text-center">
+<div class="login-container">
+    <div class="login-box text-center">
         <form>
             <div clas>
                 <input type="text" id="name" placeholder="Nombre Y Apellido" class="form-control mb-3" required />
@@ -49,10 +49,10 @@
                 <input type="text" placeholder="Ingrese su Domicilio" class="form-control mb-3" required>
             </div>
             <div>
-                <button type="button" class="btn btn-danger">Atras</button>
+                <button type="button" class="btn btn-danger" (click)="previousStep()">Atras</button>
             </div>
             <div>
-                <Button type="button" class="btn btn-primary">Siguiente</Button>
+                <Button type="button" class="btn btn-primary" (click)="nextStep()">Siguiente</Button>
             </div>
         </form>
     </div>
@@ -61,10 +61,10 @@
 }
 
 @case (3) {
-// Step 3: Registro de usuario y Contraseña
+<!--Step 3: Registro de usuario y Contraseña-->
 
-<div class="register-container">
-    <div class="register-box text-center">
+<div class="login-container">
+    <div class="login-box text-center">
         <form>
             <div class="form-control">
                 <input type="text" placeholder="Ingrese un nombre de usuario" class="form-comtrol mb-3" required>
@@ -75,10 +75,10 @@
 
             </div>
             <div class="form-control">
-                <button type="button" class="btn btn-danger">Atras</button>
+                <button type="button" class="btn btn-danger" (click)="previousStep()">Atras</button>
             </div>
             <div>
-                <Button type="button" class="btn btn-success">Crear</Button>
+                <Button type="button" class="btn btn-success" (click)="nextStep()">Crear</Button>
             </div>
         </form>
     </div>

@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* CSS HEX */
+:root {
+    --ash-gray: rgb(186, 197, 199);
+    --air-force-blue: #598392ff;
+    --rich-black: #01161eff;
+    --beige: #eff6e0ff;
+    --midnight-green: #124559ff;
+}
+
+/* CSS HSL
+--ash-gray: hsla(126, 15%, 72%, 1);
+--air-force-blue: hsla(196, 24%, 46%, 1);
+--rich-black: hsla(197, 94%, 6%, 1);
+--beige: hsla(79, 55%, 92%, 1);
+--midnight-green: hsla(197, 66%, 21%, 1); */
+
+.background {
+    background-color: beige;
+}
+
+.background-2 {
+    background-color: #aec3b0ff;
+}
+
+.primary-color {
+    background-color: #124559ff;
+}
+
+.secondary-color {
+    background-color: #598392ff;
+}
+
+.terciary-color {
+    background-color: #01161eff;
+}
+
+.button-primary {
+    background-color: #124559ff;
+    max-width: 100%;
+    min-width: none;
+}
