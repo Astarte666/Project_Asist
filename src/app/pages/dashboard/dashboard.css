@@ -1,0 +1,27 @@
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+    }
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+/* attendance-chart.component.scss */
+.chart-container {
+    border: 1px solid #e0e0e0;
+
+    .chart-wrapper {
+        position: relative;
+        height: 300px;
+        width: 100%;
+
+        @media (max-width: 768px) {
+            height: 250px;
+        }
+    }
+}

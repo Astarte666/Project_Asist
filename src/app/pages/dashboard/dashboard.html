@@ -1,1 +1,108 @@
-<p>dashboard works!</p>
+<!-- <!-- dashboard.component.html -->
+<div class="container-fluid mt-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2>Panel de Control</h2>
+            <p class="text-muted">Resumen general de estadísticas</p>
+        </div>
+    </div>
+
+    <!-- Fila de tarjetas resumen -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3" *ngFor="let card of summaryCards">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-2">{{card.title}}</h6>
+                            <h3 class="mb-0">{{card.value}}</h3>
+                        </div>
+                        <div class="bg-primary bg-opacity-10 p-3 rounded">
+                            <i [class]="'bi ' + card.icon + ' text-primary'"></i>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <span class="badge bg-light text-success" *ngIf="card.trend > 0">
+                            <i class="bi bi-arrow-up"></i> {{card.trend}}%
+                        </span>
+                        <span class="badge bg-light text-danger" *ngIf="card.trend <= 0">
+                            <i class="bi bi-arrow-down"></i> {{card.trend * -1}}%
+                        </span>
+                        <span class="text-muted small ms-2">vs último mes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fila de gráficos principales -->
+    <div class="row mb-4">
+        <!-- Gráfico grande -->
+        <div class="col-lg-8 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0">Rendimiento de estudiantes</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Aquí iría tu gráfico -->
+                    <div class="bg-light rounded p-5 text-center">
+                        <i class="bi bi-bar-chart text-muted" style="font-size: 3rem;"></i>
+                        <p class="mt-2 text-muted">Gráfico de rendimiento</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráficos pequeños -->
+        <div class="col-lg-4 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0">Distribución por curso</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Aquí iría tu gráfico -->
+                    <div class="bg-light rounded p-4 text-center">
+                        <i class="bi bi-pie-chart text-muted" style="font-size: 2rem;"></i>
+                        <p class="mt-2 text-muted">Gráfico circular</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fila inferior -->
+    <div class="row">
+        <!-- Tabla reciente -->
+        <div class="col-lg-6 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Últimas actividades</h5>
+                    <a href="#" class="btn btn-sm btn-outline-primary">Ver todo</a>
+                </div>
+                <div class="card-body">
+                    <!-- Aquí iría tu tabla -->
+                    <div class="bg-light rounded p-4 text-center">
+                        <i class="bi bi-table text-muted" style="font-size: 2rem;"></i>
+                        <p class="mt-2 text-muted">Tabla de actividades</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendario -->
+        <div class="col-lg-6 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0">Próximos eventos</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Aquí iría tu calendario -->
+                    <div class="bg-light rounded p-4 text-center">
+                        <i class="bi bi-calendar-event text-muted" style="font-size: 2rem;"></i>
+                        <p class="mt-2 text-muted">Vista de calendario</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

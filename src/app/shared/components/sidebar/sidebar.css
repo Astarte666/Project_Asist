@@ -1,0 +1,15 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    :host {
+        flex: 0 0 auto;
+        width: 16.666667%;
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}

@@ -1,13 +1,14 @@
-<div class="container-fluid">
-    <app-header></app-header>
+<div class="d-flex">
 
-    <div class="row">
-        <app-sidebar></app-sidebar>
+    <app-sidebar class="sidebar"></app-sidebar>
 
-        <main class="col-md-10">
+    <div class="content-wrapper flex-grow-1 d-flex flex-column min-vh-100">
+        <app-header></app-header>
+
+        <main class="flex-grow-1 p-3">
             <router-outlet></router-outlet>
         </main>
-    </div>
 
-    <app-footer></app-footer>
+        <app-footer></app-footer>
+    </div>
 </div>
