@@ -10,18 +10,3 @@
 .bg-light {
     background-color: #f8f9fa !important;
 }
-
-/* attendance-chart.component.scss */
-.chart-container {
-    border: 1px solid #e0e0e0;
-
-    .chart-wrapper {
-        position: relative;
-        height: 300px;
-        width: 100%;
-
-        @media (max-width: 768px) {
-            height: 250px;
-        }
-    }
-}
