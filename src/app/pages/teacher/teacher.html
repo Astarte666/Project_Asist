@@ -1,1 +1,50 @@
-<p>teacher works!</p>
+<div class="calendar-container">
+    <div class="card shadow-sm">
+        <!-- Cabecera del calendario -->
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <div>
+                <button class="btn btn-sm btn-outline-light me-2" (click)="mesAnterior()">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <span class="fs-5">{{ mesActual }} {{ anoActual }}</span>
+                <button class="btn btn-sm btn-outline-light ms-2" (click)="mesSiguiente()">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+            <div class="badge bg-light text-dark">
+                <i class="bi bi-circle-fill text-success me-1"></i> Presente
+                <i class="bi bi-circle-fill text-danger mx-1"></i> Ausente
+                <i class="bi bi-circle-fill text-warning ms-1"></i> Justificado
+            </div>
+        </div>
+
+        <!-- Cuerpo del calendario -->
+        <div class="card-body p-0">
+            <!-- Días de la semana -->
+            <div class="calendar-grid">
+                <div class="calendar-header" *ngFor="let dia of diasSemana">
+                    {{ dia }}
+                </div>
+
+                <!-- Días del calendario -->
+                <div class="calendar-day" *ngFor="let dia of diasCalendario" [class.out-month]="!dia.esDelMes"
+                    [class.current-day]="dia.esHoy" [class.has-attendance]="tieneAsistencias(dia)">
+
+                    <div class="day-number">{{ dia.numero }}</div>
+
+                    <div class="attendance-markers">
+                        <span *ngIf="dia.asistencias.presente > 0" class="badge bg-success marker">
+                            {{ dia.asistencias.presente }}
+                        </span>
+                        <span *ngIf="dia.asistencias.ausente > 0" class="badge bg-danger marker">
+                            {{ dia.asistencias.ausente }}
+                        </span>
+                        <span *ngIf="dia.asistencias.justificado > 0" class="badge bg-warning marker">
+                            {{ dia.asistencias.justificado }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

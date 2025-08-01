@@ -1,4 +1,4 @@
-.card {
+/* .card {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
     &:hover {
@@ -41,4 +41,30 @@
     .sidebar.open {
         left: 0;
     }
+} */
+
+body {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.progress {
+    height: 24px;
+    border-radius: 12px;
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
 }

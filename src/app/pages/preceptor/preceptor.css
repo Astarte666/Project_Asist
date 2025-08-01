@@ -1,0 +1,58 @@
+  body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f4f4f9;
+      margin: 0;
+  }
+
+  /* Calendar container */
+  .calendar {
+      width: 450px;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Calendar header styling */
+  .calendar-header {
+      text-align: center;
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      font-size: 1.2em;
+      font-weight: bold;
+  }
+
+  /* Days of the week styling */
+  .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      background-color: #007bff;
+      color: white;
+  }
+
+  .calendar-days div {
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+  }
+
+  /* Date cells styling */
+  .calendar-dates {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+  }
+
+  .calendar-dates div {
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #ddd;
+  }
+
+  /* Highlight today */
+  .today {
+      background-color: #ffdd57;
+      font-weight: bold;
+  }

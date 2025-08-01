@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectionStrategy, model } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+
 
 @Component({
   selector: 'app-dashboard',
