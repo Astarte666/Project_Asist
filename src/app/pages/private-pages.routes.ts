@@ -6,6 +6,7 @@ import { Preceptor } from "./preceptor/preceptor";
 import { Info } from "./info/info";
 import { Dashboard } from "./dashboard/dashboard";
 
+
 export const PAGES_ROUTES: Routes = [
   {
     path: '', 

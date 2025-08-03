@@ -5,54 +5,42 @@
 <div class="login-container">
     <div class="login-box text-center">
         <form>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Selecciona tu rol</option>
+            <select class="form-select mb-3">
+                <option selected disabled>Selecciona tu rol</option>
                 <option value="1">Profesor</option>
                 <option value="2">Estudiante</option>
                 <option value="3">Preceptor</option>
             </select>
-            <div class="mb-3">
-                <button type="button" class="btn btn-danger" (click)="previousStep()">Cancelar</button>
-            </div>
-            <div>
-                <Button type="button" class="btn btn-primary" (click)="nextStep()">Siguiente</Button>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-danger" routerLink="/public/login">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="nextStep()">Siguiente</button>
             </div>
         </form>
     </div>
 </div>
 
+
 }
 
 @case (2) {
 <!-- // Step 2: Registro de toda la vida -->
-
 <div class="login-container">
     <div class="login-box text-center">
         <form>
-            <div clas>
-                <input type="text" id="name" placeholder="Nombre Y Apellido" class="form-control mb-3" required />
-            </div>
-            <div>
-                <input type="text" placeholder="DNI" placeholder="Ingrese su DNI" class="form-control mb-3" requiered />
-            </div>
-            <div>
-                <input type="email" placeholder="Ingrese Correo Electronico" class="form-control mb-3" requuired>
-            </div>
-            <div>
-                <input type="text" placeholder="Ingrese número de Telefono" class="form-control mb-3" required>
-            </div>
-            <div>
-                <select name="localidad" id="localidad">Seleccione su Localidad</select>
-                <option value="llenar dinamicamente">Llenar dinamicamente</option>
-            </div>
-            <div>
-                <input type="text" placeholder="Ingrese su Domicilio" class="form-control mb-3" required>
-            </div>
-            <div>
-                <button type="button" class="btn btn-danger" (click)="previousStep()">Atras</button>
-            </div>
-            <div>
-                <Button type="button" class="btn btn-primary" (click)="nextStep()">Siguiente</Button>
+            <input type="text" placeholder="Nombre y Apellido" class="form-control" required />
+            <input type="text" placeholder="DNI" class="form-control" required />
+            <input type="email" placeholder="Correo Electrónico" class="form-control" required />
+            <input type="tel" placeholder="Número de Teléfono" class="form-control" required />
+
+            <select class="form-select" required>
+                <option disabled selected>Seleccione su Localidad</option>
+                <option value="dinamico">Llenar dinámicamente</option>
+            </select>
+
+            <input type="text" placeholder="Domicilio" class="form-control" required />
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-danger" (click)="previousStep()">Atrás</button>
+                <button type="button" class="btn btn-primary" (click)="nextStep()">Siguiente</button>
             </div>
         </form>
     </div>
@@ -66,23 +54,19 @@
 <div class="login-container">
     <div class="login-box text-center">
         <form>
-            <div class="form-control">
-                <input type="text" placeholder="Ingrese un nombre de usuario" class="form-comtrol mb-3" required>
-                alert ("Deberá usar este usuario para iniciar sesion")
-            </div>
-            <div class="form-control">
-                <input type="text" placeholder="Ingrese su contraseña" class="form-control mb-3" required>
+            <input type="text" placeholder="Nombre de usuario" class="form-control mb-3" required />
+            <small class="text-light d-block mb-3">Deberá usar este usuario para iniciar sesión</small>
 
-            </div>
-            <div class="form-control">
-                <button type="button" class="btn btn-danger" (click)="previousStep()">Atras</button>
-            </div>
-            <div>
-                <Button type="button" class="btn btn-success" (click)="nextStep()">Crear</Button>
+            <input type="password" placeholder="Contraseña" class="form-control mb-3" required />
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-danger" (click)="previousStep()">Atrás</button>
+                <button type="button" class="btn btn-success" (click)="nextStep()">Crear</button>
             </div>
         </form>
     </div>
 </div>
+
 
 }
 

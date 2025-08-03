@@ -1,69 +1,110 @@
-        body {
-            background-color: #111;
-            color: #ff914d;
-            font-family: 'roboto', Arial, Helvetica, sans-serif;
-        }
+body {
+    background-color: #111;
+    color: #ff914d;
+    font-family: 'roboto', Arial, Helvetica, sans-serif;
+}
 
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
 
+.login-box {
+    background-color: #222;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    max-width: 400px;
+    width: 100%;
+    color: white;
+    border: 1px solid #aaa;
+}
 
-        .login-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
+.login-box input[type="text"],
+.login-box input[type="password"],
+.login-box input[type="email"],
+.login-box input[type="tel"],
+.login-box select {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    border: none;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    font-size: 1rem;
+}
 
-        .login-box {
-            background-color: #222;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-            max-width: 350px;
-            width: 100%;
-            color: white;
-            border: 1px solid #aaa;
-        }
+.login-box select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 10px;
+    padding-right: 2.5rem;
+}
 
-        .login-box input[type="text"],
-        .login-box input[type="password"] {
-            background-color: #e0e0e0;
-            border-radius: 10px;
-            border: none;
-        }
+.login-box .btn {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
 
-        .login-box .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
+.login-box .btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+}
 
-        .login-box .btn-primary:hover {
-            background-color: #0056b3;
-        }
+.login-box .btn-primary:hover {
+    background-color: #0056b3;
+}
 
-        .login-box .register-btn {
-            background-color: transparent;
-            color: #00bfff;
-            border: 1px solid #00bfff;
-        }
+.login-box .btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
 
-        .login-box .register-btn:hover {
-            background-color: #00bfff;
-            color: black;
-        }
+.login-box .btn-danger:hover {
+    background-color: #a71d2a;
+}
 
-        .welcome-text {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
+.login-box .btn-success {
+    background-color: #28a745;
+    border: none;
+}
 
-        .project-title {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #ff6f00;
-        }
+.login-box .btn-success:hover {
+    background-color: #1c7c31;
+}
 
-        .error-text {
-            color: #ff4d4d;
-            font-size: 0.9rem;
-        }
+.login-box .register-btn {
+    background-color: transparent;
+    color: #00bfff;
+    border: 1px solid #00bfff;
+}
+
+.login-box .register-btn:hover {
+    background-color: #00bfff;
+    color: black;
+}
+
+.welcome-text {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.project-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff6f00;
+}
+
+.error-text {
+    color: #ff4d4d;
+    font-size: 0.9rem;
+}
