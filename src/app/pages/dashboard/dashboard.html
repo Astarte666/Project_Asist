@@ -1,36 +1,44 @@
-<div class="container-fluid mt-4">
-    <div class="row mb-4">
-        <div class="col-12">
-            <h3>Panel de Control</h3>
-        </div>
-    </div>
+<main class="container my-4">
+    <div class="row g-4">
 
-    <!-- Fila principal hacer scroll maybe? -->
-    <div class="row mb-4">
         <div class="col-lg-4 mb-3">
-            <div class="card border-1 shadow-lg h-100">
-                <div class="card-header bg-primary border-0 text-white">
-                    <h5 class="mb-0">Calendario</h5>
-                </div>
+            <div class="card shadow-sm h-100">
                 <div class="card-body">
-                    <div class="bg-light rounded p-5 text-center">
-                        <i class="bi bi-bar-chart text-muted" style="font-size: 3rem;"></i>
-                        <p class="mt-2 text-muted">Insertar un Calendario luego</p>
-                    </div>
+                    <h2 class="card-title">Faltas por Curso</h2>
+                    <hr>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            4º A
+                            <span class="badge bg-danger rounded-pill">12 Faltas Injustificadas</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            4º B
+                            <span class="badge bg-warning rounded-pill">5 Faltas Injustificadas</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            5º A
+                            <span class="badge bg-success rounded-pill">2 Faltas justificadas</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
         <div class="col-lg-4 mb-3">
-            <div class="card border-1 shadow-lg h-100">
-                <div class="card-header bg-secondary border-0">
-                    <h5 class="mb-0">% de Asistencia General</h5>
-                </div>
+            <div class="card shadow-sm h-100">
                 <div class="card-body">
-                    <div class="bg-light rounded p-4 text-center">
-                        <i class="bi bi-pie-chart text-muted" style="font-size: 2rem;"></i>
-                        <p class="mt-2 text-muted">Grafico de Asistencia</p>
-                    </div>
+                    <h2 class="card-title">Justificaciones</h2>
+                    <hr>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Sofía Pérez (4º A)
+                            <button class="btn btn-sm button">Revisar</button>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Juan Gómez (4º B)
+                            <button class="btn btn-sm button">Revisar</button>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -41,97 +49,83 @@
                     <h2 class="card-title">Acciones Rápidas</h2>
                     <hr>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-primary " type="button">Mensajería <i
-                                class="bi bi-envelope"></i></button>
-                        <button class="btn btn-primary " type="button">Horarios <i class="bi bi-calendar3"></i></button>
-                        <button class="btn btn-primary" type="button">Contactar <i class="bi bi-at"></i></button>
+                        <button class="btn button" type="button">Tomar Asistencia <i
+                                class="bi bi-person-check"></i></button>
+                        <button class="btn button" type="button">Mensajería <i class="bi bi-envelope"></i></button>
+                        <button class="btn button " type="button">Horarios <i class="bi bi-calendar3"></i></button>
+                        <button class="btn button" type="button">Generar Constancias <i
+                                class="bi bi-file-earmark-diff"></i></button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <hr class="border-5 ">
-    <h3 class="card-title my-3">Lista de cursos asignados</h3>
-    <!-- Tabla de cursos-->
-    <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">Curso</th>
-                    <th scope="col">Carrera</th>
-                    <th scope="col">Materias</th>
-                    <th scope="col">Alumnos</th>
-                    <th scope="col" class="text-center">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1° A</td>
-                    <td>Ingeniería en Software</td>
-                    <td>
-                        <span class="badge bg-primary me-1">Matemáticas</span>
-                        <span class="badge bg-primary me-1">Programación I</span>
-                        <span class="badge bg-primary">Física</span>
-                    </td>
-                    <td>
-                        <span class="badge bg-success">25 alumnos</span>
-                    </td>
-                    <td class="text-center">
-                    </td>
-                </tr>
-                <tr>
-                    <td>2° B</td>
-                    <td>Lic. en Sistemas</td>
-                    <td>
-                        <span class="badge bg-primary me-1">Bases de Datos</span>
-                        <span class="badge bg-primary me-1">Redes</span>
-                        <span class="badge bg-primary">Estadística</span>
-                    </td>
-                    <td>
-                        <span class="badge bg-success">18 alumnos</span>
-                    </td>
-                    <td class="text-center">
-                    </td>
-                </tr>
-                <tr>
-                    <td>3° C</td>
-                    <td>Ing. en Computación</td>
-                    <td>
-                        <span class="badge bg-primary me-1">IA</span>
-                        <span class="badge bg-primary me-1">Cloud Computing</span>
-                        <span class="badge bg-primary">Seguridad</span>
-                    </td>
-                    <td>
-                        <span class="badge bg-success">22 alumnos</span>
-                    </td>
-                    <td class="text-center">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <hr class="border-5">
-    <h3>Otras opciones</h3>
 
-    <!-- Otras weas-->
-    <div class="row">
+        <!-- Listado -->
         <div class="col-lg-12 mb-3">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Notificacion de actividades</h5>
-                    <a href="#" class="btn btn-sm btn-outline-primary">Ver todo</a>
-                </div>
+            <div class="card shadow-sm h-100">
                 <div class="card-body">
-                    <div class="bg-light rounded p-4 text-center">
-                        <i class="bi bi-table text-muted" style="font-size: 2rem;"></i>
-                        <p class="mt-2 text-muted">Mensajes</p>
-                        <p class="mt-2 text-muted">Consultas</p>
-                        <p class="mt-2 text-muted">Reuniones etc.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2 class="card-title mb-0">Listado de Alumnos</h2>
+                        <select class="form-select w-auto bg-dark text-light selec">
+                            <option value="">Prof. Matematicas</option>
+                            <option value="">Prof. Historia</option>
+                            <option value="">Prof. Lengua</option>
+                            <option value="">Software</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">Alumno</th>
+                                    <th scope="col">Curso</th>
+                                    <th scope="col">Carrera</th>
+                                    <th scope="col">Materias</th>
+                                    <th scope="col" class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Pepito
+                                    </td>
+                                    <td>1°</td>
+                                    <td>Ingeniería en Software</td>
+                                    <td>
+                                        <span class="badge bg-primary me-1">Matemáticas</span>
+                                        <span class="badge bg-primary me-1">Programación I</span>
+                                        <span class="badge bg-primary">Física</span>
+                                    </td>
+                                    <td>Poner iconos</td>
+                                </tr>
+                                <tr>
+                                    <td>Juan Gonzales</td>
+                                    <td>2° B</td>
+                                    <td>Lic. en Sistemas</td>
+                                    <td>
+                                        <span class="badge bg-primary me-1">Bases de Datos</span>
+                                        <span class="badge bg-primary me-1">Redes</span>
+                                        <span class="badge bg-primary">Estadística</span>
+                                    </td>
+                                    <td>Poner iconos</td>
+                                </tr>
+                                <tr>
+                                    <td>Junito weasd</td>
+                                    <td>3° C</td>
+                                    <td>Ing. en Computación</td>
+                                    <td>
+                                        <span class="badge bg-primary me-1">IA</span>
+                                        <span class="badge bg-primary me-1">Cloud Computing</span>
+                                        <span class="badge bg-primary">Seguridad</span>
+                                    </td>
+                                    <td>Poner iconos</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-</div>
+</main>

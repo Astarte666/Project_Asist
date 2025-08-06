@@ -13,12 +13,12 @@
 }
 
 app-header {
-    background-color: #f8f9fa;
+    background-color: #E9E3DF;
     padding: 1rem;
     border-bottom: 1px solid #dee2e6;
 }
 
 main {
     flex-grow: 1;
-    background-color: #fff;
+    background-color: #E9E3DF;
 }

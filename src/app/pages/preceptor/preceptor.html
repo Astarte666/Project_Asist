@@ -3,10 +3,10 @@
 
         <div class="col-lg-4 mb-3">
             <div class="card shadow-sm h-100">
-                <div class="card-body">
+                <div class="card-body d-flex flex-column" style="height: 250px;">
                     <h2 class="card-title">Faltas por Curso</h2>
                     <hr>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush overflow-auto" style="flex-grow: 1; min-height: 0;">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             4º A
                             <span class="badge bg-danger rounded-pill">12 Faltas Injustificadas</span>
@@ -19,6 +19,15 @@
                             5º A
                             <span class="badge bg-success rounded-pill">2 Faltas justificadas</span>
                         </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            5º A
+                            <span class="badge bg-success rounded-pill">2 Faltas justificadas</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            5º A
+                            <span class="badge bg-success rounded-pill">2 Faltas justificadas</span>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -26,22 +35,31 @@
 
         <div class="col-lg-4 mb-3">
             <div class="card shadow-sm h-100">
-                <div class="card-body">
+                <div class="card-body d-flex flex-column" style="height: 250px;">
                     <h2 class="card-title">Justificaciones</h2>
                     <hr>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush overflow-auto" style="flex-grow: 1; min-height: 0;">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Sofía Pérez (4º A)
-                            <button class="btn btn-sm btn-info">Revisar</button>
+                            <button class="btn btn-sm button2">Revisar</button>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Juan Gómez (4º B)
-                            <button class="btn btn-sm btn-info">Revisar</button>
+                            <button class="btn btn-sm button2">Revisar</button>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Juan Gómez (4º B)
+                            <button class="btn btn-sm button2">Revisar</button>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Juan Gómez (4º B)
+                            <button class="btn btn-sm button2">Revisar</button>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+
 
         <div class="col-lg-4 mb-3">
             <div class="card shadow-sm h-100">
@@ -49,12 +67,11 @@
                     <h2 class="card-title">Acciones Rápidas</h2>
                     <hr>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-primary" type="button">Tomar Asistencia <i
+                        <button class="btn button" type="button">Tomar Asistencia <i
                                 class="bi bi-person-check"></i></button>
-                        <button class="btn btn-primary " type="button">Mensajería <i
-                                class="bi bi-envelope"></i></button>
-                        <button class="btn btn-primary " type="button">Horarios <i class="bi bi-calendar3"></i></button>
-                        <button class="btn btn-primary" type="button">Generar Constancias <i
+                        <button class="btn button " type="button">Mensajería <i class="bi bi-envelope"></i></button>
+                        <button class="btn button " type="button">Horarios <i class="bi bi-calendar3"></i></button>
+                        <button class="btn button" type="button">Generar Constancias <i
                                 class="bi bi-file-earmark-diff"></i></button>
                     </div>
                 </div>
@@ -67,7 +84,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <h2 class="card-title mb-0">Listado de Alumnos</h2>
-                        <select class="form-select w-auto">
+                        <select class="form-select w-auto bg-dark text-light selec">
                             <option value="">Prof. Matematicas</option>
                             <option value="">Prof. Historia</option>
                             <option value="">Prof. Lengua</option>

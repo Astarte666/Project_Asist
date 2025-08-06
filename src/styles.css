@@ -1,0 +1,31 @@
+.brd {
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+/*Botones principales*/
+.button {
+    background-color: #DD4816;
+    color: black;
+}
+
+.button:hover {
+    background-color: #C74A1F;
+    color: white;
+}
+
+/*Botones Secundarios*/
+.button2 {
+    background-color: #1685D9;
+    color: black;
+}
+
+.button2:hover {
+    background-color: #1685D9;
+    color: white;
+}
+
+/*Selects*/
+.selec {
+    cursor: pointer;
+}

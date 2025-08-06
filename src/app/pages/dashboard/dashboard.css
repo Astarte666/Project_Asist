@@ -1,44 +1,18 @@
-.card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-    &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
-    }
-}
-
 .bg-light {
     background-color: #f8f9fa !important;
 }
 
-:root {
-    --primary: #4f46e5;
-    --secondary: #10b981;
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    background: #ffffff;
 }
 
-.sidebar {
-    transition: all 0.3s ease;
-}
-
-.card-hover:hover {
+.card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .badge {
     font-size: 0.7rem;
     padding: 2px 6px;
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        position: absolute;
-        z-index: 100;
-        width: 250px;
-        left: -250px;
-    }
-
-    .sidebar.open {
-        left: 0;
-    }
 }
