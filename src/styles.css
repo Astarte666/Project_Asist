@@ -6,12 +6,11 @@
 /*Botones principales*/
 .button {
     background-color: #DD4816;
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 .button:hover {
     background-color: #C74A1F;
-    color: white;
 }
 
 /*Botones Secundarios*/
@@ -28,4 +27,8 @@
 /*Selects*/
 .selec {
     cursor: pointer;
+}
+
+.tabla {
+    border-radius: 5px;
 }

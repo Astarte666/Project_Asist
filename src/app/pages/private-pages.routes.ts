@@ -5,6 +5,7 @@ import { Teacher } from "./teacher/teacher";
 import { Preceptor } from "./preceptor/preceptor";
 import { Info } from "./info/info";
 import { Dashboard } from "./dashboard/dashboard";
+import { Assistance } from "./assistance/assistance";
 
 
 export const PAGES_ROUTES: Routes = [
@@ -17,6 +18,7 @@ export const PAGES_ROUTES: Routes = [
       { path: 'preceptor', component: Preceptor },
       { path: 'info', component: Info },
       { path: 'dashboard', component: Dashboard },
+      { path: 'assitance', component: Assistance },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
