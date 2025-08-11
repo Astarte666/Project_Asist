@@ -1,0 +1,22 @@
+/*Asistencia*/
+/* Asegurate de ponerlo en el CSS del componente o al final de styles.css */
+.table tbody tr.presente td,
+.table tbody tr.presente th {
+    background-color: #d4edda !important;
+    /* verde suave */
+    color: #155724 !important;
+}
+
+.table tbody tr.ausente td,
+.table tbody tr.ausente th {
+    background-color: #f8d7da !important;
+    /* rojo suave */
+    color: #721c24 !important;
+}
+
+.table tbody tr.justificado td,
+.table tbody tr.justificado th {
+    background-color: #fff3cd !important;
+    /* amarillo suave */
+    color: #856404 !important;
+}

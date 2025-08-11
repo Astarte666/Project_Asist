@@ -6,6 +6,7 @@ import { Preceptor } from "./preceptor/preceptor";
 import { Info } from "./info/info";
 import { Dashboard } from "./dashboard/dashboard";
 import { Assistance } from "./assistance/assistance";
+import { Justify } from "./justify/justify";
 
 
 export const PAGES_ROUTES: Routes = [
@@ -13,12 +14,13 @@ export const PAGES_ROUTES: Routes = [
     path: '', 
     component: Private,
     children: [
-      { path: 'student', component: Student },
-      { path: 'teacher', component: Teacher },
-      { path: 'preceptor', component: Preceptor },
-      { path: 'info', component: Info },
-      { path: 'dashboard', component: Dashboard },
-      { path: 'assitance', component: Assistance },
+      { path: 'student', component: Student, data:{ title:'Estudiante'} }, //el data es para que cambie el titulo de cada pag
+      { path: 'teacher', component: Teacher, data:{ title:'Profesor'} },
+      { path: 'preceptor', component: Preceptor, data:{ title:'Preceptor'} },
+      { path: 'info', component: Info, data:{ title:'Estadisticas'} },
+      { path: 'dashboard', component: Dashboard, data:{ title:'Dashboard General'} },
+      { path: 'assistance', component: Assistance, data:{ title:'Asistencia'} },
+      { path: 'justify', component: Justify, data:{ title:'Justificaciones'} },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
