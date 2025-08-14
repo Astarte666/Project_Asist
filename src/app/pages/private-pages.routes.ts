@@ -7,6 +7,7 @@ import { Info } from "./info/info";
 import { Dashboard } from "./dashboard/dashboard";
 import { Assistance } from "./assistance/assistance";
 import { Justify } from "./justify/justify";
+import { Sms } from "./sms/sms";
 
 
 export const PAGES_ROUTES: Routes = [
@@ -21,6 +22,7 @@ export const PAGES_ROUTES: Routes = [
       { path: 'dashboard', component: Dashboard, data:{ title:'Dashboard General'} },
       { path: 'assistance', component: Assistance, data:{ title:'Asistencia'} },
       { path: 'justify', component: Justify, data:{ title:'Justificaciones'} },
+      { path: 'sms', component: Sms, data:{title:'Mensajería'} },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
