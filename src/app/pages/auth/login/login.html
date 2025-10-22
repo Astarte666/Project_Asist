@@ -5,19 +5,34 @@
             <img src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" width="60" alt="avatar">
         </div>
 
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="mb-3">
-                <input type="text" [(ngModel)]="loginData.userName" name="userName" class="form-control"
-                    placeholder="Usuario">
+                <input type="text" name="email" class="form-control" placeholder="ejemplo@gmail.com"
+                    formControlName="email">
+                @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+                <div class="invalid-feedback">Email inválido</div>
+                }
             </div>
             <div class="mb-1">
-                <input type="password" [(ngModel)]="loginData.password" name="password" class="form-control"
-                    placeholder="Contraseña">
+                <input type="password" name="password" class="form-control" placeholder="Contraseña"
+                    formControlName="password">
+                @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+                <div class="invalid-feedback">Contraseña mínimo 8 caracteres</div>
+                }
             </div>
+            @if (verFeedback) {
+            <div class="alert alert-warning text-center" role="alert">
+                {{dataFeedback}}
+            </div>
+            }
             <br>
             <div class="d-grid mb-2">
-                <button type="button" class="btn btn-primary" routerLink="/private/dashboard">Iniciar
-                    Sesión</button>
+                <button type="submit" class="btn btn-primary" [disabled]="envData">
+                    @if (envData) {
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                    }
+                    IniciarSesión
+                </button>
             </div>
             <div class="mb-2">
                 <a href="#" class="text-light text-decoration-none" routerLink="/public/password">¿Olvidaste tu

@@ -27,10 +27,15 @@
 <div class="login-container">
     <div class="login-box text-center">
         <form>
-            <input type="text" placeholder="Nombre y Apellido" class="form-control" required />
+            <input type="text" placeholder="Apellido" class="form-control" required />
+            <input type="text" placeholder="Nombre" class="form-control" required />
             <input type="text" placeholder="DNI" class="form-control" required />
-            <input type="email" placeholder="Correo Electrónico" class="form-control" required />
             <input type="tel" placeholder="Número de Teléfono" class="form-control" required />
+
+            <select class="form-select" required>
+                <option disabled selected>Seleccione su Provincia</option>
+                <option value="dinamico">Llenar dinámicamente</option>
+            </select>
 
             <select class="form-select" required>
                 <option disabled selected>Seleccione su Localidad</option>
@@ -54,8 +59,9 @@
 <div class="login-container">
     <div class="login-box text-center">
         <form>
-            <input type="text" placeholder="Nombre de usuario" class="form-control mb-3" required />
-            <small class="text-light d-block mb-3">Deberá usar este usuario para iniciar sesión</small>
+            <input type="email" placeholder="Correo Electrónico" class="form-control" required />
+            <small class="text-light d-block mb-3">Deberá usar este usuario para iniciar sesión <i
+                    class="bi bi-exclamation-circle"></i></small>
 
             <input type="password" placeholder="Contraseña" class="form-control mb-3" required />
 
