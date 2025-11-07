@@ -1,16 +1,25 @@
+@if (verFormulario){
 @switch (step) {
 @case (1) {
-<!-- // Step 1: Seleccion de "Rol" -->
+<!-- // Paso 1: Seleccion de "Rol" -->
 
 <div class="login-container">
     <div class="login-box text-center">
-        <form>
-            <select class="form-select mb-3">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div>
+                <h4>Seleccione un rol</h4>
+            </div>
+            <select class="form-select mb-3" formControlName="rol"
+                [class.is-invalid]="registerForm.get('rol')?.invalid && registerForm.get('rol')?.touched">
                 <option selected disabled>Selecciona tu rol</option>
-                <option value="1">Profesor</option>
-                <option value="2">Estudiante</option>
-                <option value="3">Preceptor</option>
+                <option value="profesor">Profesor</option>
+                <option value="estudiante">Estudiante</option>
+                <option value="administrador">Preceptor</option>
             </select>
+            <div *ngIf="registerForm.get('rol')?.invalid && registerForm.get('rol')?.touched" class="invalid-feedback">
+                Debes seleccionar un rol
+            </div>
+            <br>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button type="button" class="btn btn-danger" routerLink="/public/login">Cancelar</button>
                 <button type="button" class="btn btn-primary" (click)="nextStep()">Siguiente</button>
@@ -21,53 +30,143 @@
 
 
 }
-
 @case (2) {
-<!-- // Step 2: Registro de toda la vida -->
 <div class="login-container">
-    <div class="login-box text-center">
-        <form>
-            <input type="text" placeholder="Apellido" class="form-control" required />
-            <input type="text" placeholder="Nombre" class="form-control" required />
-            <input type="text" placeholder="DNI" class="form-control" required />
-            <input type="tel" placeholder="Número de Teléfono" class="form-control" required />
+    <div class="login-box">
+        <form [formGroup]="registerForm" (ngSubmit)="register()" class="text-center">
+            <div>
+                <h4>Completa tus datos</h4>
+                <br>
+            </div>
+            <div class="row">
+                <!-- Columna izquierda -->
+                <div class="col-md-6">
+                    <input type="text" placeholder="Apellido" class="form-control"
+                        [class.is-invalid]="registerForm.get('apellido')?.invalid && registerForm.get('apellido')?.touched"
+                        formControlName="apellido" />
+                    <div *ngIf="registerForm.get('apellido')?.invalid && registerForm.get('apellido')?.touched"
+                        class="invalid-feedback">
+                        Apellido requerido (mínimo 3 caracteres)
+                    </div>
+                    <br>
 
-            <select class="form-select" required>
-                <option disabled selected>Seleccione su Provincia</option>
-                <option value="dinamico">Llenar dinámicamente</option>
-            </select>
+                    <input type="text" placeholder="Nombre" class="form-control"
+                        [class.is-invalid]="registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched"
+                        formControlName="nombre" />
+                    <div *ngIf="registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched"
+                        class="invalid-feedback">
+                        Nombre requerido (mínimo 3 caracteres)
+                    </div>
+                    <br>
 
-            <select class="form-select" required>
-                <option disabled selected>Seleccione su Localidad</option>
-                <option value="dinamico">Llenar dinámicamente</option>
-            </select>
+                    <input type="text" placeholder="N° Documento" class="form-control"
+                        [class.is-invalid]="registerForm.get('documento')?.invalid && registerForm.get('documento')?.touched"
+                        formControlName="documento" />
+                    <div *ngIf="registerForm.get('documento')?.invalid && registerForm.get('documento')?.touched"
+                        class="invalid-feedback">
+                        Documento inválido
+                    </div>
+                    <br>
 
-            <input type="text" placeholder="Domicilio" class="form-control" required />
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input type="text" placeholder="Teléfono" class="form-control"
+                        [class.is-invalid]="registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched"
+                        formControlName="telefono" />
+                    <div *ngIf="registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched"
+                        class="invalid-feedback">
+                        Teléfono inválido
+                    </div>
+                    <br>
+                </div>
+
+                <!-- Columna derecha -->
+                <div class="col-md-6">
+                    <select class="form-select" required formControlName="provincia" (change)="onProvinciaChange()"
+                        [class.is-invalid]="registerForm.get('provincia')?.invalid && registerForm.get('provincia')?.touched">
+                        <option disabled selected>Seleccione su Provincia</option>
+                        <option *ngFor="let provincia of provincias" [value]="provincia.id">
+                            {{ provincia.nombre }}
+                        </option>
+                    </select>
+                    <div *ngIf="registerForm.get('provincia')?.invalid && registerForm.get('provincia')?.touched"
+                        class="invalid-feedback">
+                        Debes seleccionar una provincia
+                    </div>
+                    <br>
+
+                    <select class="form-select" required formControlName="localidad"
+                        [class.is-invalid]="registerForm.get('localidad')?.invalid && registerForm.get('localidad')?.touched">
+                        <option disabled selected>Seleccione su Localidad</option>
+                        <option *ngFor="let localidad of localidades" [value]="localidad.id">
+                            {{ localidad.nombre }}
+                        </option>
+                    </select>
+                    <div *ngIf="registerForm.get('localidad')?.invalid && registerForm.get('localidad')?.touched"
+                        class="invalid-feedback">
+                        Debes seleccionar una localidad
+                    </div>
+                    <br>
+
+                    <input type="text" placeholder="Domicilio" class="form-control" required
+                        formControlName="domicilio" />
+                    <div *ngIf="registerForm.get('domicilio')?.invalid && registerForm.get('domicilio')?.touched"
+                        class="invalid-feedback">
+                        Domicilio inválido
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
                 <button type="button" class="btn btn-danger" (click)="previousStep()">Atrás</button>
                 <button type="button" class="btn btn-primary" (click)="nextStep()">Siguiente</button>
             </div>
+
         </form>
     </div>
 </div>
-
 }
 
+
 @case (3) {
-<!--Step 3: Registro de usuario y Contraseña-->
+<!--Paso 3: Registro de usuario y Contraseña-->
 
 <div class="login-container">
     <div class="login-box text-center">
-        <form>
-            <input type="email" placeholder="Correo Electrónico" class="form-control" required />
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div>
+                <h4>Crea un usuario para iniciar sesión</h4>
+                <br>
+            </div>
+            <input type="email" placeholder="Correo Electrónico" class="form-control" required
+                formControlName="email" />
             <small class="text-light d-block mb-3">Deberá usar este usuario para iniciar sesión <i
                     class="bi bi-exclamation-circle"></i></small>
+            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                class="invalid-feedback">
+                Email inválido
+            </div>
+            <br>
 
-            <input type="password" placeholder="Contraseña" class="form-control mb-3" required />
+            <input type="password" placeholder="Contraseña" class="form-control mb-3" required
+                formControlName="password" />
+            <small class="text-light d-block mb-3">Confirmar contraseña </small>
+            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                class="invalid-feedback">
+                Contraseña inválida
+            </div>
+            <br>
+
+            <input type="password" placeholder="Repetir Contraseña" class="form-control mb-3" required
+                formControlName="confirmedPassword" />
+            <div *ngIf="registerForm.get('confirmedPassword')?.invalid && registerForm.get('confirmedPassword')?.touched"
+                class="invalid-feedback">
+                Las contraseñas no coinciden
+            </div>
+            <br>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button type="button" class="btn btn-danger" (click)="previousStep()">Atrás</button>
-                <button type="button" class="btn btn-success" (click)="nextStep()">Crear</button>
+                <button type="submit" class="btn btn-success" [disabled]="envData">Registrar</button>
             </div>
         </form>
     </div>
@@ -76,4 +175,5 @@
 
 }
 
+}
 }

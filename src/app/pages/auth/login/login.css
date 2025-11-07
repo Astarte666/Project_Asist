@@ -1,5 +1,5 @@
 body {
-    background-color: #111;
+    background-color: #111 !important;
     color: #ff914d;
     font-family: 'roboto', Arial, Helvetica, sans-serif;
 }
@@ -10,6 +10,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    background-color: #111 !important;
 }
 
 .login-box {

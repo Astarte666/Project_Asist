@@ -1,0 +1,148 @@
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.materia-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.materia-item:hover {
+    background-color: #dddddd;
+}
+
+.materia-item span {
+    color: #000000;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    border-bottom: #000000 1px solid;
+}
+
+thead {
+    background-color: #DD4816;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+th,
+td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+}
+
+tbody tr {
+    border-bottom: 1px solid #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background-color: #dddddd;
+}
+
+.actions {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #000000;
+
+    &:hover {
+        color: #DD4816;
+    }
+}
+
+/* Scroll para lista de materias */
+.card-body.d-flex.flex-column {
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+table tbody {
+    display: block;
+    max-height: 220px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+table thead,
+table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.card-body.d-flex.flex-column::-webkit-scrollbar,
+table tbody::-webkit-scrollbar {
+    width: 8px;
+}
+
+.card-body.d-flex.flex-column::-webkit-scrollbar-thumb,
+table tbody::-webkit-scrollbar-thumb {
+    background-color: #DD4816;
+    border-radius: 10px;
+}
+
+.card-body.d-flex.flex-column::-webkit-scrollbar-track,
+table tbody::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+/* Contenedor de botones de acción */
+.card>div:last-child {
+    display: flex;
+    gap: 0.8rem;
+    padding: 1rem;
+}
+
+/* Botones */
+.card>div:last-child .btn {
+    min-width: 100px;
+    font-weight: 400;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* Efecto hover */
+.card>div:last-child .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón Inscribirse */
+.button2 {
+    background-color: #DD4816;
+    color: #fff;
+    border: none;
+}
+
+.button2:hover {
+    background-color: #bb3b12;
+}

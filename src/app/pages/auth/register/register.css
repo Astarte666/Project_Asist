@@ -1,5 +1,5 @@
 body {
-    background-color: #111;
+    background-color: #111 !important;
     color: #ff914d;
     font-family: 'roboto', Arial, Helvetica, sans-serif;
 }
@@ -10,6 +10,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    background-color: #111 !important;
 }
 
 .login-box {
@@ -17,7 +18,7 @@ body {
     border-radius: 15px;
     padding: 2rem;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    max-width: 400px;
+    max-width: 700px;
     width: 100%;
     color: white;
     border: 1px solid #aaa;
@@ -52,12 +53,16 @@ body {
     border-radius: 10px;
     padding: 0.5rem;
     font-size: 1rem;
+    border: 1px solid #aaa;
+
 }
 
 .login-box .btn-primary {
     background-color: #007bff;
     border: none;
     color: white;
+    border: 1px solid #aaa;
+
 }
 
 .login-box .btn-primary:hover {
@@ -67,6 +72,8 @@ body {
 .login-box .btn-danger {
     background-color: #dc3545;
     border: none;
+    border: 1px solid #aaa;
+
 }
 
 .login-box .btn-danger:hover {
@@ -76,6 +83,8 @@ body {
 .login-box .btn-success {
     background-color: #28a745;
     border: none;
+    border: 1px solid #aaa;
+
 }
 
 .login-box .btn-success:hover {
@@ -86,6 +95,8 @@ body {
     background-color: transparent;
     color: #00bfff;
     border: 1px solid #00bfff;
+    border: 1px solid #aaa;
+
 }
 
 .login-box .register-btn:hover {

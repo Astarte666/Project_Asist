@@ -10,13 +10,14 @@
 }
 
 .button:hover {
-    background-color: #C74A1F;
+    background-color: rgb(255, 64, 0);
+    color: white;
 }
 
 /*Botones Secundarios*/
 .button2 {
     background-color: #1685D9;
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 .button2:hover {
@@ -32,5 +33,13 @@
 .tabla {
     border-radius: 5px;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
