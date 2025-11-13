@@ -1,69 +1,65 @@
+// src/app/pages/auth/login/login.component.ts
 import { Component, inject } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
-import { FormsModule, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../../core/services/auth.service';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.html',
-  styleUrls: ['./login.css'] 
+  styleUrls: ['./login.css']
 })
 export class Login {
-
+  private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
-  private fb = inject(FormBuilder);
 
-  loginForm: FormGroup;
-  verFeedback: boolean = false;
-  dataFeedback: string = "";
-  envData: boolean = false;
+  loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]]
+  });
 
-  constructor(){
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
-    })
-  }
+  verFeedback = false;
+  dataFeedback = '';
+  envData = false;
 
-  login(){
-    let email: string = this.loginForm.get('email')?.value;
-    let password: string = this.loginForm.get('password')?.value;
 
-    if (this.loginForm.valid){
-      this.envData = true;
+login() {
+  if (this.loginForm.invalid) return;
 
-      this.authService.login(email, password).subscribe({
-        next: (data) => {
-          console.log(data);
-          this.inicioExitoso(data);
-          this.envData = false;
-        },
-        error: (e) => {
-          console.log(e);
-          this.dataFeedback = e.error.message;
-          this.verFeedback = true;
-          this.envData = false;
-        }
-      });
+  this.envData = true;
+  this.verFeedback = false;
+
+  const { email, password } = this.loginForm.value;
+
+  this.authService.login(email!, password!).subscribe({
+    next: () => {
+      this.envData = false;
+      const rol = this.authService.getRol();
+
+      switch (rol) {
+        case 'administrador':
+          this.router.navigate(['/private/preceptor']);  
+          break;
+        case 'estudiante':
+          this.router.navigate(['/private/student']);    
+          break;
+        case 'profesor':
+          this.router.navigate(['/private/teacher']);   
+          break;
+        default:
+          console.warn('Rol desconocido:', rol);
+          this.router.navigate(['/private/dashboard']);
+      }
+    },
+    error: (err) => {
+      this.envData = false;
+      this.verFeedback = true;
+      this.dataFeedback = err.error?.message || 'Credenciales inválidas';
     }
-  }
-
-  inicioExitoso(data: any): void {
-    sessionStorage.setItem('authToken', data.token);
-    sessionStorage.setItem('userName', `${data.user.userApellido}, ${data.user.userNombre}`);
-    sessionStorage.setItem('rol', data.rol);
-
-    if (data.rol === "administrador") {
-      this.router.navigate(['/private/preceptor']);
-    } else if (data.rol === "estudiante") {
-      this.router.navigate(['/private/student']);
-    }
-    else if (data.rol === "profesor") {
-      this.router.navigate(['/private/teacher']);
-    }
-  }
+  });
+}
 }

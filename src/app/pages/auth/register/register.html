@@ -11,7 +11,7 @@
             </div>
             <select class="form-select mb-3" formControlName="rol"
                 [class.is-invalid]="registerForm.get('rol')?.invalid && registerForm.get('rol')?.touched">
-                <option selected disabled>Selecciona tu rol</option>
+                <option value="" disabled selected>Selecciona tu rol</option>
                 <option value="profesor">Profesor</option>
                 <option value="estudiante">Estudiante</option>
                 <option value="administrador">Preceptor</option>
@@ -82,7 +82,7 @@
                 <div class="col-md-6">
                     <select class="form-select" required formControlName="provincia" (change)="onProvinciaChange()"
                         [class.is-invalid]="registerForm.get('provincia')?.invalid && registerForm.get('provincia')?.touched">
-                        <option disabled selected>Seleccione su Provincia</option>
+                        <option value="" selected disabled>Seleccione su Provincia</option>
                         <option *ngFor="let provincia of provincias" [value]="provincia.id">
                             {{ provincia.nombre }}
                         </option>
@@ -95,7 +95,7 @@
 
                     <select class="form-select" required formControlName="localidad"
                         [class.is-invalid]="registerForm.get('localidad')?.invalid && registerForm.get('localidad')?.touched">
-                        <option disabled selected>Seleccione su Localidad</option>
+                        <option value="" selected disabled>Seleccione su Localidad</option>
                         <option *ngFor="let localidad of localidades" [value]="localidad.id">
                             {{ localidad.nombre }}
                         </option>
@@ -113,6 +113,12 @@
                         Domicilio inválido
                     </div>
                     <br>
+                    <select class="form-select" required formControlName="aceptado"
+                        [class.is-invalid]="registerForm.get('aceptado')?.invalid && registerForm.get('aceptado')?.touched">
+                        <option value="" selected disabled>¿Aceptado?</option>
+                        <option value="true">Aceptado</option>
+                        <option value="false">No Aceptado</option>
+                    </select>
                 </div>
             </div>
 

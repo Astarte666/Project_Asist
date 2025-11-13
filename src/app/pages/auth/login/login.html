@@ -1,5 +1,4 @@
 <div class="login-container">
-
     <div class="login-box text-center">
         <div class="mb-3">
             <img src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" width="60" alt="avatar">
@@ -7,40 +6,45 @@
 
         <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="mb-3">
-                <input type="text" name="email" class="form-control" placeholder="ejemplo@gmail.com"
-                    formControlName="email">
+                <input type="email" class="form-control" placeholder="ejemplo@gmail.com" formControlName="email">
                 @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-                <div class="invalid-feedback">Email inválido</div>
+                <div class="invalid-feedback d-block">Email inválido</div>
                 }
             </div>
             <div class="mb-1">
-                <input type="password" name="password" class="form-control" placeholder="Contraseña"
-                    formControlName="password">
+                <input type="password" class="form-control" placeholder="Contraseña" formControlName="password">
                 @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-                <div class="invalid-feedback">Contraseña mínimo 8 caracteres</div>
+                <div class="invalid-feedback d-block">Mínimo 8 caracteres</div>
                 }
             </div>
+
             @if (verFeedback) {
             <div class="alert alert-warning text-center" role="alert">
-                {{dataFeedback}}
+                {{ dataFeedback }}
             </div>
             }
+
             <br>
+
             <div class="d-grid mb-2">
-                <button type="submit" class="btn btn-primary" [disabled]="envData">
+                <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid || envData">
                     @if (envData) {
                     <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                     }
-                    IniciarSesión
+                    Iniciar Sesión
                 </button>
             </div>
+
             <div class="mb-2">
-                <a href="#" class="text-light text-decoration-none" routerLink="/public/password">¿Olvidaste tu
-                    cuenta?</a>
+                <a routerLink="/public/password" class="text-light text-decoration-none">
+                    ¿Olvidaste tu contraseña?
+                </a>
             </div>
+
             <div class="d-grid">
-                <button type="button" class="btn register-btn" routerLink="/public/register">¿No
-                    tienes una cuenta? Regístrate</button>
+                <button type="button" class="btn register-btn" routerLink="/public/register">
+                    ¿No tienes una cuenta? Regístrate
+                </button>
             </div>
         </form>
     </div>

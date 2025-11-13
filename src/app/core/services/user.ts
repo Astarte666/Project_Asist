@@ -9,6 +9,7 @@ export interface User {
   userProvincia: string,
   userLocalidad: string,
   userDomicilio: string,
+  userAceptado: boolean,
   email: string,
   password: string,
   email_verified_at?: boolean,
@@ -29,6 +30,7 @@ export class UserService {
     userProvincia: "",
     userLocalidad: "",
     userDomicilio: "",
+    userAceptado: false,
     email: "",
     password: ""
   };

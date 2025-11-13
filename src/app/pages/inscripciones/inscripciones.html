@@ -5,12 +5,18 @@
                 <div class="card-body">
                     <h4 class="card-title">Lista de carreras</h4>
                     <hr>
-                    <select class="form-select selec">
+
+                    <select class="form-select selec" [(ngModel)]="carreraSeleccionada"
+                        (change)="onCarreraSeleccionada(carreraSeleccionada?.id)">
                         <option value="" disabled selected>Seleccionar una carrera</option>
-                        <option value="">Matematicas</option>
-                        <option value="">Software</option>
-                        <option value="">Lengua</option>
+                        <option *ngFor="let carrera of carreras" [ngValue]="carrera">
+                            {{ carrera.carreNombre }}
+                        </option>
                     </select>
+
+                    <div *ngIf="cargando" class="mt-2 text-muted">
+                        Cargando carreras...
+                    </div>
                 </div>
             </div>
         </div>
@@ -20,103 +26,61 @@
                 <div class="card-body d-flex flex-column">
                     <h4>Lista de materias</h4>
                     <hr>
-                    <div class="materia-item">
-                        <span>Matemáticas</span>
-                        <button class="btn button">Agregar</button>
+
+                    <div *ngIf="!carreraSeleccionada" class="text-muted">
+                        Seleccioná una carrera para ver sus materias.
                     </div>
-                    <div class="materia-item">
-                        <span>Programación I</span>
-                        <button class="btn button">Agregar</button>
+
+                    <div *ngIf="carreraSeleccionada && materias.length > 0">
+                        <div *ngFor="let materia of materias"
+                            class="materia-item d-flex justify-content-between align-items-center my-2">
+                            <span>{{ materia.matNombre }}</span>
+                            <button class="btn button" type="button" (click)="agregarMateria(materia)">
+                                Agregar
+                            </button>
+                        </div>
                     </div>
-                    <div class="materia-item">
-                        <span>Lengua</span>
-                        <button class="btn button">Agregar</button>
-                    </div>
-                    <div class="materia-item">
-                        <span>Historia</span>
-                        <button class="btn button">Agregar</button>
-                    </div>
-                    <div class="materia-item">
-                        <span>Matemáticas</span>
-                        <button class="btn button">Agregar</button>
-                    </div>
-                    <div class="materia-item">
-                        <span>Programación I</span>
-                        <button class="btn button">Agregar</button>
-                    </div>
-                    <div class="materia-item">
-                        <span>Lengua</span>
-                        <button class="btn button">Agregar</button>
-                    </div>
-                    <div class="materia-item">
-                        <span>Historia</span>
-                        <button class="btn button">Agregar</button>
+                    <div *ngIf="carreraSeleccionada && materias.length === 0" class="text-muted">
+                        Esta carrera no tiene materias registradas.
                     </div>
                 </div>
             </div>
         </div>
-
 
         <div class="col-lg-6">
             <div class="card shadow-sm h-100">
                 <div class="card-body d-flex flex-column">
                     <div>
-                        <table>
-                            <thead>
-                                <th>Materias</th>
-                                <th>Carrera</th>
-                                <th>Acciones</th>
+                        <table class="table table-striped align-middle">
+                            <thead class="table-header">
+                                <tr>
+                                    <th>Materias</th>
+                                    <th>Carrera</th>
+                                    <th>Acciones</th>
+                                </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Matematicas</td>
-                                    <td>Prof. Matematica</td>
-                                    <td class="actions"><i class="bi bi-trash"></i></td>
+                                <tr *ngFor="let insc of materiasSeleccionadas">
+                                    <td>{{ insc.matNombre }}</td>
+                                    <td>{{ carreraSeleccionada?.carreNombre }}</td>
+                                    <td class="actions text-center">
+                                        <i class="bi-trash text-danger" (click)="eliminarMateria(insc)"></i>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>Programación I</td>
-                                    <td>Software</td>
-                                    <td class="actions"><i class="bi bi-trash"></i></td>
-                                <tr>
-                                    <td>Matematicas</td>
-                                    <td>Prof. Matematica</td>
-                                    <td class="actions"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>Programación I</td>
-                                    <td>Software</td>
-                                    <td class="actions"><i class="bi bi-trash"></i></td>
-                                <tr>
-                                    <td>Matematicas</td>
-                                    <td>Prof. Matematica</td>
-                                    <td class="actions"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>Programación I</td>
-                                    <td>Software</td>
-                                    <td class="actions"><i class="bi bi-trash"></i></td>
-                                <tr>
-                                    <td>Matematicas</td>
-                                    <td>Prof. Matematica</td>
-                                    <td class="actions"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>Programación I</td>
-                                    <td>Software</td>
-                                    <td class="actions"><i class="bi bi-trash"></i></td>
                             </tbody>
                         </table>
+
+                        <div *ngIf="materiasSeleccionadas.length === 0" class="text-muted">
+                            No hay materias agregadas aún.
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <button class="btn btn-danger" type="button">Cancelar</button>
-                    <button class="btn button2" type="button">Inscribirse</button>
+
+                <div class="d-flex justify-content-end gap-2 p-3">
+                    <button class="btn button2" type="button" (click)="inscribirse()"
+                        [disabled]="!carreraSeleccionada || materiasSeleccionadas.length === 0 || cargando">Inscribirse</button>
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
 </main>

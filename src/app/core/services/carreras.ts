@@ -3,42 +3,50 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { Observable } from 'rxjs';
 
-
 export interface Carrera {
-  id?: number,
-  carreNombre: string,
-  created_at: string,
-  updated_at: string,
-  Materias: Materia[]
+  id?: number;
+  carreNombre: string;
+  created_at: string;
+  updated_at: string;
+  Materias: Materia[];
 }
 
 export interface Materia {
-  id?: number,
-  matNombre: string,
-  carrera_id: number,
-  created_at: string,
-  updated_at: string,
+  id?: number;
+  matNombre: string;
+  carrera_id: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CarrerasResponse {
+  data: Carrera[];
+}
+
+export interface MateriasResponse {
+  data: Materia[];
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class Carreras {
-
+export class CarrerasService {
   private http = inject(HttpClient);
-
-  miCarrera: Carrera = {
+  private miCarrera: Carrera = {
     carreNombre: "",
     created_at: "",
     updated_at: "",
     Materias: []
   };
 
+  constructor() {}
 
-  constructor() { }
+  getAllCarreras(): Observable<CarrerasResponse> {
+    return this.http.get<CarrerasResponse>(`${environment.apiURL}carreras`);
+  }
 
-  getAllCarreras(): Observable<Carrera[]> {
-    return this.http.get<Carrera[]>(`${environment.apiURL}carrerasConMaterias`)
+  getMateriasByCarrera(idCarrera: number): Observable<MateriasResponse> {
+    return this.http.get<MateriasResponse>(`${environment.apiURL}carreras/${idCarrera}/materias`);
   }
 
   setMiCarrera(carrera: Carrera): void {
