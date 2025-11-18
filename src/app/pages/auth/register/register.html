@@ -112,13 +112,6 @@
                         class="invalid-feedback">
                         Domicilio inválido
                     </div>
-                    <br>
-                    <select class="form-select" required formControlName="aceptado"
-                        [class.is-invalid]="registerForm.get('aceptado')?.invalid && registerForm.get('aceptado')?.touched">
-                        <option value="" selected disabled>¿Aceptado?</option>
-                        <option value="true">Aceptado</option>
-                        <option value="false">No Aceptado</option>
-                    </select>
                 </div>
             </div>
 

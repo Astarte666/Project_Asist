@@ -1,0 +1,61 @@
+<main class="container my-4">
+    <div class="row g-4">
+
+        <div class="col-lg-6 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h2 class="card-title d-flex justify-content-between align-items-center">
+                        Solicitudes
+                        <span>{{ usuariosPendientes.length }}</span>
+                    </h2>
+                    <hr>
+
+                    <div *ngIf="cargando" class="text-center py-3">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Cargando...</span>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!cargando && usuariosPendientes.length === 0" class="text-muted text-center py-3">
+                        <p>No hay solicitudes pendientes</p>
+                    </div>
+
+                    <div *ngIf="!cargando && usuariosPendientes.length > 0" class="list-group list-group-flush">
+                        <div *ngFor="let user of usuariosPendientes" class="list-group-item p-3">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h6 class="mb-1">{{ user.userNombre }} {{ user.userApellido }}</h6>
+                                </div>
+                                <button class="btn btn-success btn-sm" (click)="aceptar(user.id)"
+                                    [disabled]="aceptando.includes(user.id)">
+                                    <span *ngIf="aceptando.includes(user.id)" class="spinner-border spinner-border-sm"
+                                        role="status"></span>
+                                    <span *ngIf="!aceptando.includes(user.id)">Aceptar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Justificaciones</h2>
+                    <hr>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Sofía Pérez (4º A)
+                            <button class="btn btn-sm button">Revisar</button>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Juan Gómez (4º B)
+                            <button class="btn btn-sm button">Revisar</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

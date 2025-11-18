@@ -15,18 +15,23 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>(`${environment.apiURL}login`, { email, password }).pipe(
       tap((response) => {
-        if (response.token) localStorage.setItem('token', response.token);
+        if (response.user && !response.user.userAceptado) {
+          throw new Error('Tu solicitud está pendiente.');
+        }
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+        }
         if (response.user) {
           localStorage.setItem('user', JSON.stringify(response.user));
           const fullName = `${response.user.userApellido}, ${response.user.userNombre}`;
           localStorage.setItem('userName', fullName);
         }
-        if (response.rol) localStorage.setItem('rol', response.rol);
+        if (response.rol) {
+          localStorage.setItem('rol', response.rol);
+        }
       })
     );
   }
-
-
 
   register(user: User): Observable<any> {
     return this.http.post<any>(`${environment.apiURL}register`, user).pipe(

@@ -14,9 +14,6 @@ import { User } from '../../../core/services/user';
 })
 export class Register {
 
-
-
-  //Pasos del fomulario
   step =1;
   nextStep() {
     this.step++;
@@ -50,12 +47,11 @@ export class Register {
   provincia: ['', [Validators.required]],
   localidad: ['', [Validators.required]],
   domicilio: ['', [Validators.required, Validators.minLength(3)]],
-  aceptado: ['', [Validators.requiredTrue]],
   rol: ['', [Validators.required]],
   email: ['', [Validators.required, Validators.email]],
   password: ['', [Validators.required, Validators.minLength(8)]],
   confirmedPassword: ['', [Validators.required]],
-}, { validators: this.passwordMatchValidator });
+  }, { validators: this.passwordMatchValidator });
   }
 
 
@@ -94,10 +90,10 @@ export class Register {
       userProvincia: nomProvincia?.nombre,
       userLocalidad: nomLocalidad?.nombre,
       userDomicilio: this.registerForm.get('domicilio')?.value,
-      userAceptado: false,
       email: this.registerForm.get('email')?.value,
       password: this.registerForm.get('password')?.value,
-      rol: this.registerForm.get('rol')?.value
+      rol: this.registerForm.get('rol')?.value,
+      userAceptado: false
     }
 
 

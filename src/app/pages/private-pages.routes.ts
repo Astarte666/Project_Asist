@@ -9,6 +9,7 @@ import { Assistance } from "./assistance/assistance";
 import { Justify } from "./justify/justify";
 import { Sms } from "./sms/sms";
 import { Inscripciones } from "./inscripciones/inscripciones";
+import { Gestion } from "./preceptor/gestion/gestion";
 
 
 export const PAGES_ROUTES: Routes = [
@@ -19,6 +20,7 @@ export const PAGES_ROUTES: Routes = [
       { path: 'student', component: Student, data:{ title:'Estudiante'} }, //el data es para que cambie el titulo de cada pag
       { path: 'teacher', component: Teacher, data:{ title:'Profesor'} },
       { path: 'preceptor', component: Preceptor, data:{ title:'Preceptor'} },
+      { path: 'gestion', component: Gestion, data:{ title:'Gestión'} },
       { path: 'info', component: Info, data:{ title:'Estadisticas'} },
       { path: 'dashboard', component: Dashboard, data:{ title:'Dashboard General'} },
       { path: 'assistance', component: Assistance, data:{ title:'Asistencia'} },
