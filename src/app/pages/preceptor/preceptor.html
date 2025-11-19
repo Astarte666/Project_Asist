@@ -58,11 +58,8 @@
                                 <div>
                                     <h6 class="mb-1">{{ user.userNombre }} {{ user.userApellido }}</h6>
                                 </div>
-                                <button class="btn btn-success btn-sm" (click)="aceptar(user.id)"
-                                    [disabled]="aceptando.includes(user.id)">
-                                    <span *ngIf="aceptando.includes(user.id)" class="spinner-border spinner-border-sm"
-                                        role="status"></span>
-                                    <span *ngIf="!aceptando.includes(user.id)">Aceptar</span>
+                                <button class="btn btn-success btn-sm" routerLink="/private/gestion">
+                                    <span>Revisar</span>
                                 </button>
                             </div>
                         </div>

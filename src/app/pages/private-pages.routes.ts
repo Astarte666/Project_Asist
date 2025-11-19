@@ -25,7 +25,7 @@ export const PAGES_ROUTES: Routes = [
       { path: 'dashboard', component: Dashboard, data:{ title:'Dashboard General'} },
       { path: 'assistance', component: Assistance, data:{ title:'Asistencia'} },
       { path: 'justify', component: Justify, data:{ title:'Justificaciones'} },
-      { path: 'sms', component: Sms, data:{title:'Mensajería'} },
+      { path: 'sms', component: Sms, data:{title:'Gestión'} },
       { path: 'inscripciones',  component: Inscripciones, data:{title:'Inscripciones'}},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]

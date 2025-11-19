@@ -100,7 +100,6 @@ inscribirse() {
 
   console.log('Payload enviado:', payload);
 
-  // ← USA environment.apiURL + 'inscripciones'
   this.http.post(`${environment.apiURL}inscripciones`, payload).subscribe({
     next: (res) => {
       console.log('Inscripción exitosa:', res);

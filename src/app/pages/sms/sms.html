@@ -1,6 +1,5 @@
 <main class="container-fluid my-4">
     <div class="row g-4">
-
         <div class="col-12">
             <div class="card shadow-sm">
                 <div class="card-body">
@@ -40,9 +39,37 @@
             </div>
         </div>
 
+        <!-- Inscripciones -->
 
-
-
-
+        <div class="col-12 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title">Inscripciones</h2>
+                    <hr>
+                    <table class="table table-striped" *ngIf="carreras">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 200px;">Carrera</th>
+                                <th>Materias</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let carrera of carreras | keyvalue">
+                                <td>{{ carrera.key }}</td>
+                                <td>
+                                    <span *ngFor="let m of carrera.value.materias; let i = index">
+                                        <span class="badge bg-success me-1">{{ m.matNombre }}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    {{ carrera.value.fecha }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
