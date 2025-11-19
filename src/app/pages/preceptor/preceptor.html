@@ -36,27 +36,37 @@
         <div class="col-lg-4 mb-3">
             <div class="card shadow-sm h-100">
                 <div class="card-body d-flex flex-column" style="height: 250px;">
-                    <h2 class="card-title">Justificaciones <i class="bi bi-info-square fs-4 selec ms-2 demo-section"
-                            matBadge="4" matBadgeOverlap="false"></i></h2>
+                    <h2 class="card-title d-flex justify-content-between align-items-center">
+                        Solicitudes
+                        <span>{{ usuariosPendientes.length }}</span>
+                    </h2>
                     <hr>
-                    <ul class="list-group list-group-flush overflow-auto" style="flex-grow: 1; min-height: 0;">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Sofía Pérez (4º A)
-                            <button class="btn btn-sm button2">Revisar</button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Juan Gómez (4º B)
-                            <button class="btn btn-sm button2">Revisar</button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Juan Gómez (4º B)
-                            <button class="btn btn-sm button2">Revisar</button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Juan Gómez (4º B)
-                            <button class="btn btn-sm button2">Revisar</button>
-                        </li>
-                    </ul>
+
+                    <div *ngIf="cargando" class="text-center py-3">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Cargando...</span>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!cargando && usuariosPendientes.length === 0" class="text-muted text-center py-3">
+                        <p>No hay solicitudes pendientes</p>
+                    </div>
+
+                    <div *ngIf="!cargando && usuariosPendientes.length > 0" class="list-group list-group-flush">
+                        <div *ngFor="let user of usuariosPendientes" class="list-group-item p-3">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h6 class="mb-1">{{ user.userNombre }} {{ user.userApellido }}</h6>
+                                </div>
+                                <button class="btn btn-success btn-sm" (click)="aceptar(user.id)"
+                                    [disabled]="aceptando.includes(user.id)">
+                                    <span *ngIf="aceptando.includes(user.id)" class="spinner-border spinner-border-sm"
+                                        role="status"></span>
+                                    <span *ngIf="!aceptando.includes(user.id)">Aceptar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -99,7 +109,8 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th scope="col">Alumno</th>
-                                    <th scope="col">Curso</th>
+                                    <!--                                     <th scope="col">Curso</th>
+ -->
                                     <th scope="col">Carrera</th>
                                     <th scope="col">Materias</th>
                                 </tr>
@@ -109,7 +120,8 @@
                                     <td>
                                         Pepito
                                     </td>
-                                    <td>1°</td>
+                                    <!--                                     <td>1°</td>
+ -->
                                     <td>Ingeniería en Software</td>
                                     <td>
                                         <span class="badge bg-primary me-1">Matemáticas</span>
@@ -119,7 +131,8 @@
                                 </tr>
                                 <tr>
                                     <td>Juan Gonzales</td>
-                                    <td>2° B</td>
+                                    <!--                                     <td>2° B</td>
+ -->
                                     <td>Lic. en Sistemas</td>
                                     <td>
                                         <span class="badge bg-primary me-1">Bases de Datos</span>
@@ -129,7 +142,8 @@
                                 </tr>
                                 <tr>
                                     <td>Junito weasd</td>
-                                    <td>3° C</td>
+                                    <!--                                     <td>3° C</td>
+ -->
                                     <td>Ing. en Computación</td>
                                     <td>
                                         <span class="badge bg-primary me-1">IA</span>
