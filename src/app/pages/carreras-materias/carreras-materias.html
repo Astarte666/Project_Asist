@@ -1,0 +1,74 @@
+<main class="container-fluid my-2">
+    <div class="row g-4">
+        <div class="col-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title">Crear Carrera</h2>
+                    <hr>
+                    <div class="d-flex my-2">
+                        <input type="text" class="form-control" placeholder="Nombre de la carrrera"
+                            [(ngModel)]="carreNombre" name="carreNombre">
+                    </div>
+
+                    <hr>
+                    <div class="d-flex my-2">
+                        <label class="form-label gap-2">Asignar materias:</label>
+                    </div>
+                    <div class="d-flex my-2">
+                        <div class="border rounded w-100 p-2" style="max-height:220px; overflow:auto;">
+                            <form id="materiasForm" aria-label="Lista de materias">
+                                <div class="form-check mb-2" *ngFor="let materia of materias">
+                                    <input class="form-check-input" type="checkbox" [value]="materia.id"
+                                        [id]="'m' + materia.id" name="materias[]">
+                                    <label class="form-check-label" [for]="'m' + materia.id">
+                                        {{ materia.matNombre || materia.nombre || materia.nombreMateria }}
+                                    </label>
+                                </div>
+
+                                <div *ngIf="loading" class="small text-muted">Cargando...</div>
+                                <div *ngIf="errorMsg" class="text-danger small">{{ errorMsg }}</div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class="d-flex my-2">
+                        <button type="submit" class="btn button my-2">Limpiar</button>
+                        <button type="submit" class="btn button ms-auto my-2" (click)="crearCarrera()">Crear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Crear Materia -->
+
+        <div class="col-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title">Crear Materia</h2>
+                    <hr>
+                    <div class="d-flex my-2">
+                        <input type="text" class="form-control" placeholder="Nombre de la materia"
+                            [(ngModel)]="matNombre" name="matNombre">
+                    </div>
+                    <hr>
+                    <div class="d-flex my-2">
+                        <label class="form-label gap-2">Asignar carrera:</label>
+                    </div>
+                    <div class="form-check mb-2" *ngFor="let carrera of carreras">
+                        <input class="form-check-input" type="checkbox" [value]="carrera.id" name="carreras[]">
+
+                        <label class="form-check-label">
+                            {{ carrera.carreNombre }}
+                        </label>
+                    </div>
+
+                    <div class="d-flex my-2">
+                        <button type="submit" class="btn button ms-auto my-2" (click)="crearMateria()">Crear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -10,6 +10,7 @@ import { Justify } from "./justify/justify";
 import { Sms } from "./sms/sms";
 import { Inscripciones } from "./inscripciones/inscripciones";
 import { Gestion } from "./preceptor/gestion/gestion";
+import { CarrerasMaterias } from "./carreras-materias/carreras-materias";
 
 
 export const PAGES_ROUTES: Routes = [
@@ -17,7 +18,7 @@ export const PAGES_ROUTES: Routes = [
     path: '', 
     component: Private,
     children: [
-      { path: 'student', component: Student, data:{ title:'Estudiante'} }, //el data es para que cambie el titulo de cada pag
+      { path: 'student', component: Student, data:{ title:'Estudiante'} }, 
       { path: 'teacher', component: Teacher, data:{ title:'Profesor'} },
       { path: 'preceptor', component: Preceptor, data:{ title:'Preceptor'} },
       { path: 'gestion', component: Gestion, data:{ title:'Gestión'} },
@@ -27,6 +28,7 @@ export const PAGES_ROUTES: Routes = [
       { path: 'justify', component: Justify, data:{ title:'Justificaciones'} },
       { path: 'sms', component: Sms, data:{title:'Gestión'} },
       { path: 'inscripciones',  component: Inscripciones, data:{title:'Inscripciones'}},
+      { path: 'carreras-materias', component: CarrerasMaterias, data: {title: 'Carreras y Materias'}},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }

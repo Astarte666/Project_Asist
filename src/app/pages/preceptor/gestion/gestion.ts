@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { GestionService } from '../../../core/services/gestion.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-gestion',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './gestion.html',
   styleUrl: './gestion.css'
 })

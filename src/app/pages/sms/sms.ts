@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../core/services/user-inscripcion.service';
+import { UserInscripcionService } from '../../core/services/user-inscripcion.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,14 +11,14 @@ import { CommonModule } from '@angular/common';
 export class Sms implements OnInit {
 
 carreras: any[] = [];
-constructor(private userService: UserService){}
+constructor(private userInscripcionService: UserInscripcionService){}
 
   ngOnInit(): void {
     this.cargarInscripciones();
   }
 
    cargarInscripciones() {
-    this.userService.userCarrerasMaterias().subscribe({
+    this.userInscripcionService.userCarrerasMaterias().subscribe({
       next: (response) => {
         console.log('Inscripciones:', response);
         this.carreras = response.carreras;

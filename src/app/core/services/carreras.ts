@@ -45,6 +45,10 @@ export class CarrerasService {
     return this.http.get<CarrerasResponse>(`${environment.apiURL}carreras`);
   }
 
+  getAllMaterias(): Observable<MateriasResponse> {
+    return this.http.get<MateriasResponse>(`${environment.apiURL}materias`);
+  }
+
   getMateriasByCarrera(idCarrera: number): Observable<MateriasResponse> {
     return this.http.get<MateriasResponse>(`${environment.apiURL}carreras/${idCarrera}/materias`);
   }
@@ -56,4 +60,15 @@ export class CarrerasService {
   getMiCarrera(): Carrera {
     return this.miCarrera;
   }
+
+  createCarrera(data: any): Observable<any> {
+    return this.http.post(`${environment.apiURL}carreras`, data);
+  }
+
+  crearMateria(data: any): Observable<any> {
+    return this.http.post(`${environment.apiURL}materias`, data);
+  }
+
+
+
 }
