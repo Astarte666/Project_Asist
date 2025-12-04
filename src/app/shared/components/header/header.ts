@@ -57,15 +57,10 @@ export class Header implements OnInit {
     });
   }
 
-  /**
-   * Carga el nombre del usuario desde el storage
-   */
+
   private loadUserName(): void {
-    // Primero intenta localStorage, luego sessionStorage
     this.userName = localStorage.getItem('userName') || 
                     sessionStorage.getItem('userName') || '';
-    
-    // Debug: verifica qué hay en el storage
     if (!this.userName) {
       console.warn('⚠️ No se encontró userName en storage');
       console.log('localStorage:', localStorage.getItem('userName'));
@@ -73,9 +68,6 @@ export class Header implements OnInit {
     }
   }
 
-  /**
-   * Cierra la sesión del usuario
-   */
   logout(): void {
     if (this.isLoggingOut) return;
     
@@ -94,9 +86,7 @@ export class Header implements OnInit {
     });
   }
 
-  /**
-   * Logout rápido sin llamar al backend
-   */
+
   logoutQuick(): void {
     if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
       this.authService.clearAuthData();
@@ -104,32 +94,21 @@ export class Header implements OnInit {
     }
   }
 
-  /**
-   * Redirige al login y limpia el estado
-   */
+
   private redirectToLogin(): void {
     this.userName = '';
     this.isLoggingOut = false;
     this.router.navigate(['/login']);
   }
 
-  /**
-   * Retorna el título a mostrar en el header
-   */
   get headerTitle(): string {
     return this.userName || this.pageTitle;
   }
 
-  /**
-   * Verifica si el usuario está autenticado
-   */
   get isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }
 
-  /**
-   * Obtiene el rol del usuario actual
-   */
   get userRole(): string {
     return this.authService.getRol();
   }
