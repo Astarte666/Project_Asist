@@ -1,76 +1,132 @@
-<main class="container-fluid my-4">
+<main class="container-fluid my-1">
     <div class="row g-4">
-        <div class="col-lg-12 mb-3">
-            <div class="card shadow-sm h-100">
+        <div class="col-lg-12">
+            <div class="card shadow-sm">
                 <div class="card-body">
-                    <h2 class="card-title">Asistencia</h2>
-                    <hr>
-                    <div class="d-flex justify-content-between align-items-center gap-3">
-                        <select class="form-select selec" [(ngModel)]="carreraSeleccionada"
-                            (change)="onCarreraSeleccionada(carreraSeleccionada?.id)">
-                            <option [ngValue]="null" disabled>Seleccionar una carrera</option>
-                            <option *ngFor="let carrera of carreras" [ngValue]="carrera">
-                                {{ carrera.carreNombre }}
-                            </option>
-                        </select>
-
-                        <div *ngIf="cargando" class="mt-2 text-muted">
-                            Cargando carreras...
+                    <h2 class="card-title mb-4">Tomar/Listar Asistencia</h2>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <label for="selectCarrera" class="form-label">Carrera</label>
+                            <select id="selectCarrera" class="form-select" [(ngModel)]="carreraSeleccionada"
+                                (change)="onCarreraSeleccionada(carreraSeleccionada?.id)" [disabled]="cargando">
+                                <option [ngValue]="null">Seleccionar carrera</option>
+                                <option *ngFor="let carrera of carreras" [ngValue]="carrera">
+                                    {{ carrera.carreNombre }}
+                                </option>
+                            </select>
                         </div>
-                        <select class="form-select selec bg-dark text-light" [(ngModel)]="selectedClaseId"
-                            (change)="onClaseSeleccionada()">
-                            <option value="">Selecciona una clase</option>
-                            <option *ngFor="let clase of clasesFiltradas" [value]="clase.id">
-                                {{ clase.fecha | date:'shortDate' }} - {{ clase.materia?.matNombre || 'Sin materia' }}
-                            </option>
-                        </select>
-                        <p *ngIf="clasesFiltradas.length === 0 && carreraSeleccionada" class="text-muted">No hay clases
-                            para esta carrera.</p>
+
+                        <div class="col-md-4">
+                            <label for="selectMateria" class="form-label">Materia</label>
+                            <select id="selectMateria" class="form-select" [(ngModel)]="materiaSeleccionada"
+                                (change)="onMateriaSeleccionada(materiaSeleccionada?.id)"
+                                [disabled]="!carreraSeleccionada || cargando">
+                                <option [ngValue]="null">Seleccionar materia</option>
+                                <option *ngFor="let materia of materias" [ngValue]="materia">
+                                    {{ materia.matNombre }}
+                                </option>
+                            </select>
+                            <small *ngIf="carreraSeleccionada && materias.length === 0" class="text-muted">
+                                No hay materias en esta carrera
+                            </small>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="selectClase" class="form-label">Clase (Fecha)</label>
+                            <select id="selectClase" class="form-select" [(ngModel)]="claseSeleccionada"
+                                (change)="onClaseSeleccionada(claseSeleccionada?.id)"
+                                [disabled]="!materiaSeleccionada || cargando">
+                                <option [ngValue]="null">Seleccionar clase</option>
+                                <option *ngFor="let clase of clases" [ngValue]="clase">
+                                    {{ clase.fecha | date:'dd/MM/yyyy' }}
+                                </option>
+                            </select>
+                            <small *ngIf="materiaSeleccionada && clases.length === 0" class="text-muted">
+                                No hay clases registradas
+                            </small>
+                        </div>
                     </div>
+
+                    <div *ngIf="cargando" class="alert alert-info">
+                        <i class="bi bi-hourglass-split"></i> Cargando...
+                    </div>
+
+                    <div *ngIf="yaTomada && alumnos.length > 0" class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        La asistencia para esta clase ya fue tomada. Puede editarla y guardar los cambios.
+                    </div>
+
                     <hr>
 
-                    <div class="table-responsive tabla">
-                        <table *ngIf="estudiantes.length > 0" class="table table-striped table-hover table-bordered">
+                    <div *ngIf="alumnos.length > 0" class="mb-3 d-flex gap-2">
+                        <button type="button" class="btn btn-sm btn-success" (click)="marcarTodos('presente')">
+                            <i class="bi bi-check-all"></i> Marcar todos Presente
+                        </button>
+                        <button type="button" class="btn btn-sm btn-danger" (click)="marcarTodos('ausente')">
+                            <i class="bi bi-x-circle"></i> Marcar todos Ausente
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table *ngIf="alumnos.length > 0" class="table table-striped table-hover">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>Alumno</th>
-                                    <th>Carrera</th>
-                                    <th>Presente</th>
-                                    <th>Observación</th>
+                                    <th style="width: 5%">#</th>
+                                    <th style="width: 35%">Alumno</th>
+                                    <th style="width: 15%">Documento</th>
+                                    <th style="width: 15%">Estado</th>
+                                    <th style="width: 30%">Observación</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let est of alumnosFiltrados; let i = index">
-                                    <td>{{ est.nombre_completo }}</td>
-                                    <td>{{ est.carrera }}</td>
+                                <tr *ngFor="let alumno of alumnos; let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ alumno.nombre_completo }}</td>
+                                    <td>{{ alumno.userDocumento }}</td>
                                     <td>
-                                        <label [for]="'presente-' + i" class="visually-hidden">Presente para {{
-                                            est.nombre_completo }}</label>
-                                        <input type="checkbox" [id]="'presente-' + i" [(ngModel)]="est.presente">
+                                        <select class="form-select form-select-sm" [(ngModel)]="alumno.condicion"
+                                            [ngClass]="{
+                                                'bg-success text-white': alumno.condicion === 'presente',
+                                                'bg-danger text-white': alumno.condicion === 'ausente',
+                                                'bg-warning': alumno.condicion === 'justificado'
+                                            }">
+                                            <option value="presente">Presente</option>
+                                            <option value="ausente">Ausente</option>
+                                            <option value="justificado">Justificado</option>
+                                        </select>
                                     </td>
                                     <td>
-                                        <label [for]="'observacion-' + i" class="visually-hidden">Observación para {{
-                                            est.nombre_completo }}</label>
-                                        <input type="text" [id]="'observacion-' + i" [(ngModel)]="est.observacion"
-                                            placeholder="Observación (opcional)">
+                                        <input type="text" class="form-control form-control-sm"
+                                            [(ngModel)]="alumno.observacion" placeholder="Observación (opcional)"
+                                            maxlength="255">
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
 
-                        <!-- Mensaje si no hay alumnos -->
-                        <p *ngIf="estudiantes.length === 0 && selectedClaseId" class="text-muted">No hay alumnos
-                            inscriptos en esta clase.</p>
+                        <div *ngIf="claseSeleccionada && alumnos.length === 0" class="alert alert-info">
+                            <i class="bi bi-info-circle"></i> No hay alumnos inscriptos en esta materia.
+                        </div>
 
-                        <!-- Botón para guardar (ya lo tienes) -->
-                        <!-- <button (click)="guardarAsistencia()" [disabled]="estudiantes.length === 0">Guardar
-                            Asistencia
-                        </button> -->
+                        <div *ngIf="!claseSeleccionada && !cargando" class="alert alert-secondary">
+                            <i class="bi bi-arrow-up-circle"></i>
+                            Seleccione una carrera, materia y clase para comenzar a tomar asistencia.
+                        </div>
                     </div>
 
+                    <div *ngIf="alumnos.length > 0" class="d-flex justify-content-end gap-2 mt-3">
+                        <button type="button" class="btn button2" (click)="resetearSeleccion()" [disabled]="guardando">
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn button" (click)="guardarAsistencia()"
+                            [disabled]="guardando || alumnos.length === 0">
+                            <span *ngIf="guardando" class="spinner-border spinner-border-sm me-2"></span>
+                            {{ guardando ? 'Guardando...' : (yaTomada ? 'Actualizar Asistencia' : 'Guardar Asistencia')
+                            }}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </main>

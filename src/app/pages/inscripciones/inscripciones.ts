@@ -83,39 +83,41 @@ export class Inscripciones implements OnInit {
 
   inscribirse() {
     if (!this.carreraSeleccionada) {
-      alert('Selecciona una carrera');
-      return;
+        alert('Selecciona una carrera');
+        return;
     }
     if (this.materiasSeleccionadas.length === 0) {
-      alert('Selecciona al menos una materia');
-      return;
+        alert('Selecciona al menos una materia');
+        return;
     }
+
     const user = this.authService.getUser();
     if (!user?.id) {
-      alert('Error: usuario no autenticado');
-      return;
+        alert('Error: usuario no autenticado');
+        return;
     }
+
     const payload = {
-      user_id: user.id,
-      carrera_id: this.carreraSeleccionada.id,
-      materias: this.materiasSeleccionadas.map(m => m.id)
+        user_id: user.id,
+        materias: this.materiasSeleccionadas.map(m => m.id)
     };
 
     console.log('Payload enviado:', payload);
 
     this.http.post(`${environment.apiURL}inscripciones`, payload).subscribe({
-      next: (res) => {
-        console.log('Inscripción exitosa:', res);
-        alert('¡Inscripto con éxito!');
-        this.materiasSeleccionadas = [];
-      },
-      error: (err) => {
-        console.error('Error completo:', err);
-        const msg = err.error?.message || err.message || 'Error desconocido';
-        alert('Error: ' + msg);
-      }
+        next: (res) => {
+            console.log('Inscripción exitosa:', res);
+            alert('¡Inscripto con éxito!');
+            this.materiasSeleccionadas = [];
+            this.getInscripciones(); // Recargar inscripciones
+        },
+        error: (err) => {
+            console.error('Error completo:', err);
+            const msg = err.error?.message || err.message || 'Error desconocido';
+            alert('Error: ' + msg);
+        }
     });
-  }
+}
 
   getInscripciones() {
     console.log("Llamando a getInscripcionesUser()...");

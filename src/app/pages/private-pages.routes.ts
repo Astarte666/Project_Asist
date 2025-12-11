@@ -11,6 +11,7 @@ import { Sms } from "./sms/sms";
 import { Inscripciones } from "./inscripciones/inscripciones";
 import { Gestion } from "./preceptor/gestion/gestion";
 import { CarrerasMaterias } from "./carreras-materias/carreras-materias";
+import { Clases } from "./clases/clases";
 
 
 export const PAGES_ROUTES: Routes = [
@@ -29,6 +30,7 @@ export const PAGES_ROUTES: Routes = [
       { path: 'sms', component: Sms, data:{title:'Gestión'} },
       { path: 'inscripciones',  component: Inscripciones, data:{title:'Inscripciones'}},
       { path: 'carreras-materias', component: CarrerasMaterias, data: {title: 'Carreras y Materias'}},
+      { path: 'clases', component: Clases, data: {title: 'Clases'}},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }

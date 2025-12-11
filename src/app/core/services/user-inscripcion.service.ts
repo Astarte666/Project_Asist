@@ -28,11 +28,11 @@ export class UserInscripcionService {
 
   getInscripcionesUser(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}mis-inscripciones`, { 
-      headers: this.getHeaders()
+        headers: this.getHeaders()
     }).pipe(
-      catchError(this.handleError)
+        catchError(this.handleError)
     );
-  }
+}
 
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
