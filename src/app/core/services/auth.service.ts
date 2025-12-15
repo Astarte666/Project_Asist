@@ -91,4 +91,25 @@ export class AuthService {
   getUserName(): string {
     return localStorage.getItem('userName') || '';
   }
+
+  hasRole(role: string): boolean {
+    return this.getRol() === role;
+  }
+
+  hasAnyRole(roles: string[]): boolean {
+    const userRole = this.getRol();
+    return roles.includes(userRole);
+  }
+
+  isEstudiante(): boolean {
+    return this.hasRole('estudiante');
+  }
+
+  isProfesor(): boolean {
+    return this.hasRole('profesor');
+  }
+
+  isAdministrador(): boolean {
+    return this.hasRole('administrador');
+  }
 }
