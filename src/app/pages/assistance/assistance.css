@@ -1,22 +1,90 @@
-/*Asistencia*/
-/* Asegurate de ponerlo en el CSS del componente o al final de styles.css */
 .table tbody tr.presente td,
 .table tbody tr.presente th {
     background-color: #d4edda !important;
-    /* verde suave */
     color: #155724 !important;
 }
 
 .table tbody tr.ausente td,
 .table tbody tr.ausente th {
     background-color: #f8d7da !important;
-    /* rojo suave */
     color: #721c24 !important;
 }
 
 .table tbody tr.justificado td,
 .table tbody tr.justificado th {
     background-color: #fff3cd !important;
-    /* amarillo suave */
     color: #856404 !important;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+table {
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #DD4816;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+th,
+td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+}
+
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+
+tbody tr:hover {
+    background-color: #dddddd;
+}
+
+.actions {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #000000;
+
+    &:hover {
+        color: #DD4816;
+    }
+}
+
+/* Scroll para lista de materias */
+.card-body.d-flex.flex-column {
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+table tbody {
+    display: block;
+    max-height: 220px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+table thead,
+table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }

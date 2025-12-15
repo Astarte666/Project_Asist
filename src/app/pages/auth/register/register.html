@@ -7,8 +7,9 @@
     <div class="login-box text-center">
         <form [formGroup]="registerForm" (ngSubmit)="register()">
             <div>
-                <h4>Seleccione un rol</h4>
+                <h4 class="card-title">Seleccione un rol</h4>
             </div>
+            <hr>
             <select class="form-select mb-3" formControlName="rol"
                 [class.is-invalid]="registerForm.get('rol')?.invalid && registerForm.get('rol')?.touched">
                 <option value="" disabled selected>Selecciona tu rol</option>
@@ -36,8 +37,8 @@
         <form [formGroup]="registerForm" (ngSubmit)="register()" class="text-center">
             <div>
                 <h4>Completa tus datos</h4>
-                <br>
             </div>
+            <hr>
             <div class="row">
                 <!-- Columna izquierda -->
                 <div class="col-md-6">
@@ -134,8 +135,8 @@
         <form [formGroup]="registerForm" (ngSubmit)="register()">
             <div>
                 <h4>Crea un usuario para iniciar sesión</h4>
-                <br>
             </div>
+            <hr>
             <input type="email" placeholder="Correo Electrónico" class="form-control" required
                 formControlName="email" />
             <small class="text-light d-block mb-3">Deberá usar este usuario para iniciar sesión <i
@@ -148,17 +149,22 @@
 
             <input type="password" placeholder="Contraseña" class="form-control mb-3" required
                 formControlName="password" />
-            <small class="text-light d-block mb-3">Confirmar contraseña </small>
             <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
-                class="invalid-feedback">
-                Contraseña inválida
+                class="error-text">
+                <div *ngIf="registerForm.get('password')?.errors?.['required']">
+                    La contraseña es requerida
+                </div>
+                <div *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                    La contraseña debe tener al menos 8 caracteres
+                </div>
             </div>
-            <br>
+
+            <small class="text-light d-block mb-3">Confirmar contraseña </small>
 
             <input type="password" placeholder="Repetir Contraseña" class="form-control mb-3" required
                 formControlName="confirmedPassword" />
-            <div *ngIf="registerForm.get('confirmedPassword')?.invalid && registerForm.get('confirmedPassword')?.touched"
-                class="invalid-feedback">
+            <div *ngIf="registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmedPassword')?.touched"
+                class="error-text">
                 Las contraseñas no coinciden
             </div>
             <br>

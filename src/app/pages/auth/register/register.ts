@@ -77,6 +77,7 @@ export class Register {
   register(): void {
     if (this.registerForm.invalid) {
     this.registerForm.markAllAsTouched();
+    alert('Por favor, completa todos los campos correctamente');
     console.warn('Formulario inválido');
     return;
   }
@@ -104,11 +105,13 @@ export class Register {
         next: (data) => {
           console.log(data);
           this.envData = false;
+          alert('¡Registro exitoso!');
           this.registroExitoso();
         },
         error: (e) => {
           console.log(e);
           this.envData = false;
+          alert('Error al registrar. Por favor, intenta nuevamente.');
         }
       });
     }

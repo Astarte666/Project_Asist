@@ -1,0 +1,71 @@
+.table-responsive {
+    overflow-x: auto;
+}
+
+.col-text {
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+
+table {
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+}
+
+thead {
+    background-color: #DD4816;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+th,
+td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+}
+
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+
+tbody tr:hover {
+    background-color: #dddddd;
+}
+
+
+
+
+table thead,
+table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* Botón Inscribirse */
+.button2 {
+    background-color: #DD4816;
+    color: #fff;
+    border: none;
+}
+
+.button2:hover {
+    background-color: #bb3b12;
+}

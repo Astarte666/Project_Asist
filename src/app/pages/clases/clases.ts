@@ -15,6 +15,17 @@ export class Clases implements OnInit {
   carreras: Carrera[] = [];
   materias: Materia[] = [];
   clases: any[] = [];
+
+  // paginación
+  paginaActual: number = 1;
+  itemsPorPagina: number = 10;
+  totalPaginas: number = 0;
+  clasesPaginadas: any[] = [];
+  currentPage = 1;
+  itemsPerPage = 10;
+  maxPagesToShow = 5;
+
+
   
   carreraSeleccionada: Carrera | null = null;
   
@@ -67,19 +78,23 @@ export class Clases implements OnInit {
   }
 
   obtenerClases(): void {
-    this.cargando = true;
-    this.clasesService.getClases().subscribe({
-      next: (response) => {
-        this.clases = response?.data || [];
-        this.cargando = false;
-      },
-      error: (error) => {
-        console.error('Error al cargar clases:', error);
-        this.cargando = false;
-        alert('Error al cargar clases');
-      }
-    });
-  }
+  this.cargando = true;
+  this.clasesService.getClases().subscribe({
+    next: (response) => {
+      this.clases = response?.data || [];
+      this.totalPaginas = Math.ceil(this.clases.length / this.itemsPorPagina);
+      this.paginaActual = 1;
+      this.actualizarPaginacion();
+      this.cargando = false;
+    },
+    error: (error) => {
+      console.error('Error al cargar clases:', error);
+      this.cargando = false;
+      alert('Error al cargar clases');
+    }
+  });
+}
+
 
   crearClase(): void {
     if (!this.nuevaClase.materias_id || !this.nuevaClase.fecha) {
@@ -133,9 +148,61 @@ export class Clases implements OnInit {
     this.materias = [];
   }
 
-  onCarreraSeleccionada(carreraId: number | null): void {
+onCarreraSeleccionada(carreraId: number | null): void {
     this.onCarreraChange();
   }
+
+actualizarPaginacion(): void {
+  const inicio = (this.paginaActual - 1) * this.itemsPorPagina;
+  const fin = inicio + this.itemsPorPagina;
+  this.clasesPaginadas = this.clases.slice(inicio, fin);
+}
+
+cambiarPagina(pagina: number): void {
+  if (pagina < 1 || pagina > this.totalPaginas) return;
+  this.paginaActual = pagina;
+  this.actualizarPaginacion();
+}
+
+get paginas(): number[] {
+  return Array.from({ length: this.totalPaginas }, (_, i) => i + 1);
+}
+
+get totalPages(): number {
+  return Math.ceil(this.clases.length / this.itemsPerPage);
+}
+
+get clasesPaginadass() {
+  const start = (this.currentPage - 1) * this.itemsPerPage;
+  return this.clases.slice(start, start + this.itemsPerPage);
+}
+
+get paginasVisibles(): number[] {
+  const half = Math.floor(this.maxPagesToShow / 2);
+
+  let start = Math.max(1, this.currentPage - half);
+  let end = Math.min(this.totalPages, start + this.maxPagesToShow - 1);
+
+  if (end - start + 1 < this.maxPagesToShow) {
+    start = Math.max(1, end - this.maxPagesToShow + 1);
+  }
+
+  const pages: number[] = [];
+  for (let i = start; i <= end; i++) {
+    pages.push(i);
+  }
+
+  return pages;
+}
+
+irAPagina(p: number) {
+  if (p >= 1 && p <= this.totalPages) {
+    this.currentPage = p;
+  }
+}
+
+
+
 
 
 }//end
