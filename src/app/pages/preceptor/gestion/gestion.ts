@@ -41,6 +41,7 @@ export class Gestion implements OnInit {
       next: () => {
         this.usuariosPendientes = this.usuariosPendientes.filter(u => u.id !== id);
         this.aceptando = this.aceptando.filter(x => x !== id);
+        alert('Usuario aceptado con éxito');
       },
       error: (err) => {
         this.aceptando = this.aceptando.filter(x => x !== id);

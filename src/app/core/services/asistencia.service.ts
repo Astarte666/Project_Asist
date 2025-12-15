@@ -69,6 +69,25 @@ export class AsistenciaService {
     );
   }
 
+  //estadisiticas generales
+  // asistencia.service.ts - Agregar estos métodos
+
+getEstadisticasGenerales(userId: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}asistencias/estadisticas-generales/${userId}`, {
+    headers: this.getHeaders()
+  }).pipe(
+    catchError(this.handleError)
+  );
+}
+
+getEstadisticasMateria(materiaId: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}asistencias/estadisticas-materia/${materiaId}`, {
+    headers: this.getHeaders()
+  }).pipe(
+    catchError(this.handleError)
+  );
+}
+
   private handleError = (error: any) => {
     console.error('AsistenciaService error', error);
     return throwError(() => new Error(error?.message || 'Server error'));

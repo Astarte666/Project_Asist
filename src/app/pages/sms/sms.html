@@ -1,73 +1,118 @@
-<main class="container-fluid my-4">
+<main class="container-fluid my-1">
     <div class="row g-4">
-        <div class="col-12">
+        <div class="col-12 mb-1">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h2 class="card-title">Enviar Mensaje</h2>
-                    <hr>
-                    <div class="d-flex my-2">
-                        <label class="form-label gap-2">Destino:</label>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <select class="form-select selec bg-dark text-light">
-                            <option selected disabled>Profesor:</option>
-                            <option value="">...</option>
-                        </select>
-                        <select class="form-select selec bg-dark text-light">
-                            <option selected disabled>Preceptor:</option>
-                            <option value="">...</option>
-                        </select>
-                        <select class="form-select selec bg-dark text-light">
-                            <option selected disabled>Alumnos:</option>
-                            <option value="">...</option>
-                        </select>
-                    </div>
-                    <hr>
-                    <div class="d-flex my-2">
-                        <label class="form-label gap-2">Mensaje:</label>
-                    </div>
-                    <div class="d-flex my-3">
-                        <div class="p-2 col-12">
-                            <textarea placeholder="Redactar mensaje..." class="form-control"></textarea>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Buscar materia</label>
+                            <input type="text" class="form-control" placeholder="Nombre de materia o carrera..."
+                                [(ngModel)]="busquedaMateria">
                         </div>
-                    </div>
-                    <div class="d-flex my-2">
-                        <button type="submit" class="btn btn-success">Enviar</button>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Estado</label>
+                            <select class="form-select" [(ngModel)]="filtroEstado">
+                                <option value="todas">Todas</option>
+                                <option value="regular">Regular</option>
+                                <option value="en_riesgo">En Riesgo</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Ordenar por</label>
+                            <select class="form-select" [(ngModel)]="filtroOrden">
+                                <option value="porcentaje_desc">Mayor asistencia</option>
+                                <option value="porcentaje_asc">Menor asistencia</option>
+                                <option value="nombre">Nombre</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button class="btn btn-outline-secondary w-100" (click)="limpiarFiltros()">
+                                <i class="bi bi-x-circle me-1"></i> Limpiar
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Inscripciones -->
-
-        <div class="col-12 mb-3">
+        <div class="col-12">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h2 class="card-title">Inscripciones</h2>
+                    <h4 class="card-title">
+                        Detalle por Materia
+                        <span class="badge bg-secondary ms-2">{{ materiasFiltradas.length }}</span>
+                    </h4>
                     <hr>
-                    <table class="table table-striped" *ngIf="carreras">
-                        <thead class="table-dark">
-                            <tr>
-                                <th style="width: 200px;">Carrera</th>
-                                <th>Materias</th>
-                                <th>Fecha</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let carrera of carreras | keyvalue">
-                                <td>{{ carrera.key }}</td>
-                                <td>
-                                    <span *ngFor="let m of carrera.value.materias; let i = index">
-                                        <span class="badge bg-success me-1">{{ m.matNombre }}</span>
-                                    </span>
-                                </td>
-                                <td>
-                                    {{ carrera.value.fecha }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <div *ngIf="materiasFiltradas.length === 0" class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        No se encontraron materias con los filtros aplicados.
+                    </div>
+
+                    <div class="table-container" *ngIf="materiasFiltradas.length > 0">
+                        <div class="table-responsive table-scroll">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light sticky-header">
+                                    <tr>
+                                        <th>Materia</th>
+                                        <th>Carrera</th>
+                                        <th class="text-center">Total Clases</th>
+                                        <th class="text-center">Presentes</th>
+                                        <th class="text-center">Ausentes</th>
+                                        <th class="text-center">Justificados</th>
+                                        <th class="text-center">Asistencia</th>
+                                        <th class="text-center">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let materia of materiasFiltradas">
+                                        <td>
+                                            {{ materia.materia.nombre }}
+                                        </td>
+                                        <td>
+                                            {{ materia.materia.carrera }}
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-secondary">{{ materia.total_clases }}</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-success">{{ materia.presentes }}</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-danger">{{ materia.ausentes }}</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-info">{{ materia.justificados }}</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                <div class="progress" style="width: 100px; height: 20px;">
+                                                    <div class="progress-bar" [ngClass]="{
+                          'bg-success': materia.porcentaje_asistencia >= 85,
+                          'bg-warning': materia.porcentaje_asistencia >= 75 && materia.porcentaje_asistencia < 85,
+                          'bg-danger': materia.porcentaje_asistencia < 75
+                        }" [style.width.%]="materia.porcentaje_asistencia" role="progressbar">
+                                                    </div>
+                                                </div>
+                                                <span class="ms-2 fw-bold"
+                                                    [ngClass]="getEstadoClass(materia.porcentaje_asistencia)">
+                                                    {{ materia.porcentaje_asistencia }}%
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <span [ngClass]="getEstadoBadge(materia.estado)">
+                                                {{ getEstadoTexto(materia.estado) }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

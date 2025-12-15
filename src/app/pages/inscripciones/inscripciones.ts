@@ -120,20 +120,21 @@ export class Inscripciones implements OnInit {
 }
 
   getInscripciones() {
-    console.log("Llamando a getInscripcionesUser()...");
-
-    this.inscripcionesService.getInscripcionesUser().subscribe({
-        next: (data) => {
-          console.log("Respuesta inscripciones:", data);
-          this.inscripciones = data;
-          this.loading = false;
-        },
-        error: (err) => {
-          console.error("Error cargando inscripciones:", err);
-          this.loading = false;
-        }
-    });
-  }
+  console.log("Llamando a getInscripcionesUser()...");
+  this.loading = true;
+  this.inscripcionesService.getInscripcionesUser().subscribe({
+    next: (response) => {
+      console.log("Respuesta inscripciones:", response);
+      this.inscripciones = response.data || response || [];
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error("Error cargando inscripciones:", err);
+      this.inscripciones = [];
+      this.loading = false;
+    }
+  });
+}
 
 
 
