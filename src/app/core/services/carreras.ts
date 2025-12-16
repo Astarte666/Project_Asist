@@ -8,7 +8,7 @@ export interface Carrera {
   carreNombre: string;
   created_at: string;
   updated_at: string;
-  Materias: Materia[];
+  materias: Materia[];
 }
 
 export interface Materia {
@@ -17,10 +17,12 @@ export interface Materia {
   carrera_id: number;
   created_at: string;
   updated_at: string;
+  carrera?: Carrera;
 }
 
 export interface CarrerasResponse {
   data: Carrera[];
+  success: boolean;
 }
 
 export interface MateriasResponse {
@@ -36,7 +38,7 @@ export class CarrerasService {
     carreNombre: "",
     created_at: "",
     updated_at: "",
-    Materias: []
+    materias: []
   };
 
   constructor() {}
@@ -49,8 +51,17 @@ export class CarrerasService {
     return this.http.get<MateriasResponse>(`${environment.apiURL}materias`);
   }
 
+  getMateriasConCarreras(): Observable<CarrerasResponse> {
+    return this.http.get<CarrerasResponse>(`${environment.apiURL}showConMaterias`);
+  }
+
+
   getMateriasByCarrera(idCarrera: number): Observable<MateriasResponse> {
     return this.http.get<MateriasResponse>(`${environment.apiURL}carreras/${idCarrera}/materias`);
+  }
+
+  getEstudiantesInscriptos(carreraId:number): Observable<any> {
+    return this.http.get<any>(`${environment.apiURL}carreras/${carreraId}/estudiantes`);
   }
 
   setMiCarrera(carrera: Carrera): void {

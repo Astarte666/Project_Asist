@@ -1,4 +1,4 @@
-<main class="container my-4">
+<main class="container my-1">
     <div class="row g-4">
 
         <div class="col-lg-6 mb-3">
@@ -50,79 +50,75 @@
 
         <div class="col-lg-6 mb-3">
             <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h2 class="card-title">Justificaciones</h2>
-                    <hr>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Sofía Pérez (4º A)
-                            <button class="btn btn-sm button">Revisar</button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Juan Gómez (4º B)
-                            <button class="btn btn-sm button">Revisar</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-6 mb-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h2 class="card-title d-flex justify-content-between align-items-center">Carreras<button
-                            class="btn btn-sm button"><i class="bi bi-arrow-up-right-square"
-                                routerLink="/private/carreras-materias"></i></button>
-                    </h2>
-                    <hr>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Carrera 1
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Carrera 2
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-6 mb-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h2 class="card-title d-flex justify-content-between align-items-center">Materias<button
-                            class="btn btn-sm button"><i class="bi bi-arrow-up-right-square"
-                                routerLink="/private/carreras-materias"></i></button>
-                    </h2>
-                    <hr>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Materia 1
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Materia 2
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-6 mb-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
+                <div class="card-body lista-scroll">
                     <h2 class="card-title d-flex justify-content-between align-items-center">Clases<button
                             class="btn btn-sm button"><i class="bi bi-arrow-up-right-square"
                                 routerLink="/private/clases"></i></button>
                     </h2>
                     <hr>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Materia 1
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Materia 2
+                        <li *ngFor="let clase of clases"
+                            class="list-group-item d-flex justify-content-between align-items-center">
+
+                            <span>
+                                {{ clase.materia.matNombre }}
+                            </span>
+
+                            <span class="badge bg-primary">
+                                {{ clase.fecha | date:'dd/MM/yyyy' }}
+                            </span>
+
                         </li>
                     </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body lista-scroll">
+                    <h2 class="card-title d-flex justify-content-between align-items-center">Carreras<button
+                            class="btn btn-sm button"><i class="bi bi-arrow-up-right-square"
+                                routerLink="/private/carreras-materias"></i></button>
+                    </h2>
+                    <hr>
+                    <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            *ngFor="let carrera of carreras">
+                            {{ carrera.carreNombre }}
+                        </li>
+
+                        <li *ngIf="carreras.length === 0" class="list-group-item text-muted text-center">
+                            No hay carreras registradas
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body lista-scroll">
+                    <h2 class="card-title d-flex justify-content-between align-items-center">Materias<button
+                            class="btn btn-sm button"><i class="bi bi-arrow-up-right-square"
+                                routerLink="/private/carreras-materias"></i></button>
+                    </h2>
+                    <hr>
+                    <ul class="list-group list-group-flush">
+                        <li *ngFor="let materia of materiasPlanas"
+                            class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>
+                                {{ materia.matNombre }} – {{ materia.carrera }}
+                            </span>
+                        </li>
+                    </ul>
+                    <div *ngIf="materiasPlanas.length === 0" class="text-muted">
+                        No hay materias registradas.
+                    </div>
                 </div>
             </div>
         </div>

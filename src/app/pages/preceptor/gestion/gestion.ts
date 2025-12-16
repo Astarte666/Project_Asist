@@ -2,7 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { GestionService } from '../../../core/services/gestion.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from "@angular/router";
+import { CarrerasService, Carrera, Materia } from '../../../core/services/carreras';
+import { ClasesService } from '../../../core/services/clases.service';
 
+export interface Clase {
+  id: number;
+  fecha: string;
+  materias_id: number;
+  materia: Materia;
+}
 @Component({
   selector: 'app-gestion',
   imports: [CommonModule, RouterLink],
@@ -14,11 +22,20 @@ export class Gestion implements OnInit {
   usuariosPendientes: any[] = [];
   cargando = true;
   aceptando: number[] = [];
+  carreras: Carrera[] = [];
+  materias: Materia[] = [];
+  carrerasConMaterias: Carrera[] = [];
+  materiasPlanas: { matNombre: string; carrera: string }[] = [];
+  clases: Clase[] = [];
 
-  constructor(private gestionService: GestionService) {}
+
+  constructor(private gestionService: GestionService, private carrerasService: CarrerasService, private clasesService: ClasesService) {}
 
   ngOnInit(): void {
     this.cargarPendientes();
+    this.obtenerCarreras();
+    this.obtenerMaterias();
+    this.obtenerClases()
   }
 
   cargarPendientes(): void {
@@ -49,5 +66,52 @@ export class Gestion implements OnInit {
       }
     });
   }
+
+  obtenerCarreras(): void {
+    this.carrerasService.getAllCarreras().subscribe({
+      next: (response) => {
+        this.carreras = response?.data || [];
+      },
+      error: (error) => {
+        console.error('Error al cargar carreras:', error);
+        alert('Error al cargar carreras');
+      }
+    });
+  }
+
+obtenerMaterias(): void {
+  this.carrerasService.getMateriasConCarreras().subscribe({
+    next: (response) => {
+      const carreras = response.data;
+
+      this.materiasPlanas = carreras.flatMap(carrera =>
+        carrera.materias.map(materia => ({
+          matNombre: materia.matNombre,
+          carrera: carrera.carreNombre
+        }))
+      );
+
+      console.log('Materias planas:', this.materiasPlanas);
+    },
+    error: (error) => {
+      console.error('Error al cargar materias:', error);
+    }
+  });
+}
+
+obtenerClases(): void {
+  this.clasesService.getClases().subscribe({
+    next: (response) => {
+      console.log('Clases asignadas:', response.data);
+      this.clases = response.data; 
+    },
+    error: (error) => {
+      console.error('Error al cargar clases:', error);
+    }
+  });
+}
+
+
+
 
 }

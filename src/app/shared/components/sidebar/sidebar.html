@@ -11,7 +11,7 @@
 
         <li class="nav-item mb-2 text-uppercase" *appHasRole="['estudiante', 'profesor', 'administrador']">
             <a routerLink="/private/dashboard" routerLinkActive="active" class="nav-link text-white">
-                <i class="bi bi-house-door-fill me-2"></i> Dashboard
+                <i class="bi bi-house-door-fill me-2"></i> Inicio
             </a>
         </li>
 
@@ -43,6 +43,11 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
+                    <a routerLink="/private/clases" routerLinkActive="active" class="submenu-link">
+                        Clases
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
                     <a routerLink="/private/assistance" routerLinkActive="active" class="">
                         Asistencias
                     </a>
@@ -52,6 +57,7 @@
                         Gestión
                     </a>
                 </li>
+
             </ul>
         </li>
     </ul>
