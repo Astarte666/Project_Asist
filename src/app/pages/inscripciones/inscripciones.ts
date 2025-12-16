@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../core/services/auth.service';
 import { environment } from '../../environments/environments';
 import { UserInscripcionService } from '../../core/services/user-inscripcion.service';
-import { User } from '../../core/services/user';
+import { finalize } from 'rxjs/operators';
 
 
 @Component({
@@ -20,7 +20,8 @@ export class Inscripciones implements OnInit {
 
   carreras: Carrera[] = [];        
   materias: Materia[] = [];       
-  carreraSeleccionada?: Carrera;     
+  carreraSeleccionada?: Carrera;   
+  materiasSeleccionadas: Materia[] = [];  
   cargando: boolean = false;
   inscripciones: any[] = [];
   loading = true;  
@@ -69,7 +70,6 @@ export class Inscripciones implements OnInit {
     });
   }
 
-  materiasSeleccionadas: Materia[] = [];
 
   agregarMateria(materia: Materia): void {
     if (!this.materiasSeleccionadas.includes(materia)) {
@@ -90,26 +90,22 @@ export class Inscripciones implements OnInit {
         alert('Selecciona al menos una materia');
         return;
     }
-
     const user = this.authService.getUser();
     if (!user?.id) {
         alert('Error: usuario no autenticado');
         return;
     }
-
     const payload = {
         user_id: user.id,
         materias: this.materiasSeleccionadas.map(m => m.id)
     };
-
     console.log('Payload enviado:', payload);
-
     this.http.post(`${environment.apiURL}inscripciones`, payload).subscribe({
         next: (res) => {
             console.log('Inscripción exitosa:', res);
             alert('¡Inscripto con éxito!');
             this.materiasSeleccionadas = [];
-            this.getInscripciones(); // Recargar inscripciones
+            this.getInscripciones(); 
         },
         error: (err) => {
             console.error('Error completo:', err);
@@ -119,7 +115,7 @@ export class Inscripciones implements OnInit {
     });
 }
 
-  getInscripciones() {
+getInscripciones() {
   console.log("Llamando a getInscripcionesUser()...");
   this.loading = true;
   this.inscripcionesService.getInscripcionesUser().subscribe({
@@ -136,6 +132,28 @@ export class Inscripciones implements OnInit {
   });
 }
 
+desinscribirMateria(materiaId: number): void {
+    if (!confirm('¿Estas seguro de que deseas desinscribirte de esta materia?')) return;
+    const accionFinal = () => {
+        console.log('La suscripción ha finalizado, con o sin error.');
+    };
+    this.inscripcionesService.eliminarInscripcionPorMateria(materiaId).pipe(
+        finalize(accionFinal) 
+    ).subscribe({
+        next: (response) => {
+            alert(response.message || 'Desinscripción exitosa.');
+            this.refrescarMisMaterias(); 
+        },
+        error: (error) => {
+            console.error('Error al desinscribir:', error);
+            alert('Error: No se pudo completar la desinscripción.');
+        }
+    });
+}
+
+refrescarMisMaterias(): void {
+    this.getInscripciones();
+}
 
 
   

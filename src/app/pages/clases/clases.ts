@@ -25,8 +25,6 @@ export class Clases implements OnInit {
   itemsPerPage = 10;
   maxPagesToShow = 5;
 
-
-  
   carreraSeleccionada: Carrera | null = null;
   
   nuevaClase = {
@@ -41,6 +39,9 @@ export class Clases implements OnInit {
     private carrerasService: CarrerasService,
     private clasesService: ClasesService
   ) {}
+
+  public sortColumn: string = 'fecha';
+  public sortDirection: 'asc' | 'desc' = 'desc';
 
   ngOnInit(): void {
     this.obtenerCarreras();
@@ -201,8 +202,35 @@ irAPagina(p: number) {
   }
 }
 
-
-
-
+ordenar(column: string): void {
+    if (this.sortColumn === column) {
+        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+        this.sortColumn = column;
+        this.sortDirection = 'asc';
+    }
+    this.clases.sort((a, b) => {
+        let valA: any;
+        let valB: any;
+                if (column === 'materia') {
+            valA = a.materia?.matNombre || '';
+            valB = b.materia?.matNombre || '';
+        } else if (column === 'carrera') {
+            valA = a.materia?.carrera?.carreNombre || '';
+            valB = b.materia?.carrera?.carreNombre || '';
+        } else {
+            valA = a[column];
+            valB = b[column];
+        }
+        let comparison = 0;
+        if (valA > valB) {
+            comparison = 1;
+        } else if (valA < valB) {
+            comparison = -1;
+        }
+                return this.sortDirection === 'desc' ? comparison * -1 : comparison;
+    });
+    this.irAPagina(1);
+}
 
 }//end

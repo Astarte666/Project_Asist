@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalStudent } from './modal-student/modal-student';
 import { RouterLink } from '@angular/router';
 import { AsistenciaService } from '../../core/services/asistencia.service';
 import { AuthService } from '../../core/services/auth.service';

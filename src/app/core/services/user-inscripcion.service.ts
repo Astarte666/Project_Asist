@@ -35,6 +35,12 @@ export class UserInscripcionService {
     );
 }
 
+  eliminarInscripcionPorMateria(materiaId: number): Observable<any> {
+    const url = `${this.apiUrl}desinscribir/${materiaId}`;
+    return this.http.delete(url);
+  }
+
+
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
