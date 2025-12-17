@@ -79,6 +79,8 @@ export class CarrerasMaterias {
     this.carrerasService.createCarrera(payload).subscribe({
       next: (res) => {
         alert('Carrera creada correctamente');
+        this.carreNombre = '';
+        this.listaMaterias();
       },
       error: (err) => {
         console.error(err);
@@ -104,6 +106,9 @@ export class CarrerasMaterias {
     this.carrerasService.crearMateria(payload).subscribe({
       next: (res) => {
         alert('Materia creada correctamente');
+        this.matNombre = '';
+        this.listaCarreras();
+
       },
       error: (err) => {
         console.error(err);

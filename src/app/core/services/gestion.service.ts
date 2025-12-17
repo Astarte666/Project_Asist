@@ -9,7 +9,7 @@ export class GestionService {
 
   constructor(private http: HttpClient) {}
 
-  getPendientes(): Observable<any[]> {
+  getPendientes(): Observable<any> {
     return this.http.get<any[]>(`${this.api}/usuarios-pendientes`);
   }
 

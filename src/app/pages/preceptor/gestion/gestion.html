@@ -20,7 +20,8 @@
                         <p>No hay solicitudes pendientes</p>
                     </div>
 
-                    <div *ngIf="!cargando && usuariosPendientes.length > 0" class="list-group list-group-flush">
+                    <div *ngIf="!cargando && usuariosPendientes.length > 0"
+                        class="list-group list-group-flush flex-grow-1" style="max-height: 200px; overflow-y: auto;">
                         <div *ngFor="let user of usuariosPendientes" class="list-group-item p-3">
                             <div class="d-flex justify-content-between align-items-start">
                                 <div>
@@ -33,6 +34,8 @@
                                         Dirección: {{ user.userDomicilio }}
                                         <br>
                                         Teléfono: {{ user.userTelefono }}
+                                        <br>
+                                        Rol Solicitado: {{ user.rol || 'Sin rol' }}
                                     </small>
                                 </div>
                                 <button class="btn btn-success btn-sm" (click)="aceptar(user.id)"

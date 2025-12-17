@@ -38,16 +38,39 @@ export class Gestion implements OnInit {
     this.obtenerClases()
   }
 
-  cargarPendientes(): void {
+cargarPendientes(): void {
+    console.log('Iniciando carga de usuarios pendientes...');
     this.cargando = true;
     this.gestionService.getPendientes().subscribe({
-      next: (data) => {
-        this.usuariosPendientes = data;
+      next: (response) => {
+        console.log('Respuesta completa del servidor:', response);
+        console.log('Tipo de respuesta:', typeof response);
+        console.log('Estructura de respuesta:', Object.keys(response));
+                if (Array.isArray(response)) {
+          console.log('Respuesta es array directo');
+          this.usuariosPendientes = response;
+        } else if (response && response.data) {
+          console.log('Respuesta tiene propiedad data');
+          this.usuariosPendientes = response.data;
+        } else if (response && Array.isArray(response)) {
+          console.log('Respuesta es objeto con array');
+          this.usuariosPendientes = response;
+        } else {
+          console.warn('Estructura de respuesta inesperada:', response);
+          this.usuariosPendientes = [];
+        }
+        console.log('Total de usuarios pendientes:', this.usuariosPendientes.length);
+        console.log('Usuarios pendientes:', this.usuariosPendientes);
         this.cargando = false;
       },
-      error: () => {
+      error: (error) => {
+        console.error('Error al cargar solicitudes:', error);
+        console.error('Error completo:', JSON.stringify(error, null, 2));
+        console.error('Status:', error.status);
+        console.error('Mensaje:', error.message);
+        console.error('Error del servidor:', error.error);
         this.cargando = false;
-        alert('Error al cargar solicitudes');
+        alert('Error al cargar solicitudes: ' + (error.error?.message || error.message));
       }
     });
   }
